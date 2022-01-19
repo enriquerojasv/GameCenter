@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Splash</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="game2048">2048</string>
+    <string name="senku">Senku</string>
+    <string name="juegos">Select a game!</string>
+    <string name="help">Help</string>
+    <string name="title_activity_game2048">game2048</string>
+    <string name="title_activity_game_senku">gameSenku</string>
+    <string name="amazing_games">AmazingGames</string>
+    <string name="games">2048 and Senku</string>
+    <string name="games_text">GAMES</string>
+    <string name="presents">presents:</string>
+    <string name="version">Version 9.2.1</string>
+    <string name="title_activity_menu">Menu</string>
+</resources>
