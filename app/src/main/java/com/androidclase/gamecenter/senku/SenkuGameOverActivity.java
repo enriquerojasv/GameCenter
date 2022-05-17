@@ -1,4 +1,4 @@
-package com.androidclase.gamecenter;
+package com.androidclase.gamecenter.senku;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,10 +7,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.androidclase.gamecenter.R;
+
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class SenkuGameOver extends AppCompatActivity {
+public class SenkuGameOverActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

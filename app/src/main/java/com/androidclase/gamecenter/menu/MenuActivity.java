@@ -1,4 +1,4 @@
-package com.androidclase.gamecenter;
+package com.androidclase.gamecenter.menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class Menu extends AppCompatActivity {
+import com.androidclase.gamecenter.R;
+
+public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

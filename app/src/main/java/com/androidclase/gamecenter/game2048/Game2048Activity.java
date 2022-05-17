@@ -1,10 +1,12 @@
-package com.androidclase.gamecenter;
+package com.androidclase.gamecenter.game2048;
 
 import android.os.Bundle;
 
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.androidclase.gamecenter.R;
 
 public class Game2048Activity extends AppCompatActivity {
 

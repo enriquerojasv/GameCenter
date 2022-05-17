@@ -9,6 +9,8 @@ import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidclase.gamecenter.menu.MenuActivity;
+
 public class SplashActivity extends AppCompatActivity {
 
 
@@ -44,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent menu = new Intent(SplashActivity.this, Menu.class);
+                Intent menu = new Intent(SplashActivity.this, MenuActivity.class);
                 startActivity(menu);
                 overridePendingTransition(0, R.anim.splash_fade_out);
             }

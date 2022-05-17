@@ -1,4 +1,4 @@
-package com.androidclase.gamecenter;
+package com.androidclase.gamecenter.senku;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+
+import com.androidclase.gamecenter.R;
 
 import java.util.ArrayList;
 
@@ -291,7 +293,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         }
 
         if (possible_moves == 0) {
-            Intent intent = new Intent(getContext(), SenkuGameOver.class);
+            Intent intent = new Intent(getContext(), SenkuGameOverActivity.class);
 
             if (ones == 1) {
                 intent.putExtra("title", "YOU WIN");

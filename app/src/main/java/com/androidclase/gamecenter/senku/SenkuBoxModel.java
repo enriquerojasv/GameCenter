@@ -1,4 +1,4 @@
-package com.androidclase.gamecenter;
+package com.androidclase.gamecenter.senku;
 
 public class SenkuBoxModel {
     private boolean isSelected;

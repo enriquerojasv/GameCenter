@@ -1,4 +1,4 @@
-package com.androidclase.gamecenter;
+package com.androidclase.gamecenter.senku;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.WindowManager;
 import android.widget.Chronometer;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import com.androidclase.gamecenter.R;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/background"
 
-    tools:context=".Menu">
+    tools:context=".menu.MenuActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
