@@ -23,7 +23,7 @@
 
 
         <activity
-            android:name=".gameSenku"
+            android:name=".GameSenku"
             android:label="@string/title_activity_game_senku">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".game2048"
+            android:name=".Game2048"
             android:label="@string/title_activity_game2048">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,13 +49,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".SenkuGameOver"
+            android:label="@string/title_activity_senku_game_over">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity android:name=".GameSenku">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>

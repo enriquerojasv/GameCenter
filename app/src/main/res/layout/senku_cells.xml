@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/boxCard"
+    android:layout_width="@dimen/cell_size"
+    android:layout_height="@dimen/cell_size"
+    app:cardBackgroundColor="@color/transparent"
+    app:cardElevation="0dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="false">
+
+    <ImageView
+        android:id="@+id/boxBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/senku_box_bg" />
+
+    <ImageView
+        android:id="@+id/boxCircle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:background="@drawable/senku_box_token" />
+
+</androidx.cardview.widget.CardView>

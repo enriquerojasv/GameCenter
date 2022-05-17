@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,9 +26,9 @@ public class SplashActivity extends AppCompatActivity {
         View gamesView = findViewById(R.id.games_view);
         View versionView = findViewById(R.id.version_view);
 
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_text);
-        Animation fadeIn2 = AnimationUtils.loadAnimation(this, R.anim.fade_in_2);
-        Animation logoAnim = AnimationUtils.loadAnimation(this, R.anim.logo_animation);
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.splash_fade_in_text);
+        Animation fadeIn2 = AnimationUtils.loadAnimation(this, R.anim.splash_fade_in_2);
+        Animation logoAnim = AnimationUtils.loadAnimation(this, R.anim.splash_logo_animation);
 
         titleView.startAnimation(fadeIn);
         gamesView.startAnimation(fadeIn2);
@@ -47,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 Intent menu = new Intent(SplashActivity.this, Menu.class);
                 startActivity(menu);
-                overridePendingTransition(0, R.anim.fade_out);
+                overridePendingTransition(0, R.anim.splash_fade_out);
             }
 
             @Override

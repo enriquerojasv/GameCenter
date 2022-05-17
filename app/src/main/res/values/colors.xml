@@ -8,4 +8,30 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#FFFFDFD3</color>
+
+<!--    Senku below-->
+    <color name="border_color">#222222</color>
+    <color name="bg_color">#eeffee</color>
+    <color name="transparent">#00000000</color>
+    <color name="table_bg">#807265</color>
+    <color name="main_bg">#1A1914</color>
+    <color name="cell_bg">#61574D</color>
+    <color name="cell_token">#ede0c8</color>
+    <color name="cell_selected">#f65e3b</color>
+
+<!--    2048 below-->
+    <color name="number_color">#FFf9f6f2</color>
+    <color name="background_empty">#FFBBB7B2</color>
+    <color name="background_2">#FFEEE4DA</color>
+    <color name="background_4">#FFEDE0C8</color>
+    <color name="background_8">#FFF2B179</color>
+    <color name="background_16">#FFF59563</color>
+    <color name="background_32">#FFF67C5F</color>
+    <color name="background_64">#FFF65E3B</color>
+    <color name="background_128">#FFEDCF72</color>
+    <color name="background_256">#FFEDCC61</color>
+    <color name="background_512">#FFEDC850</color>
+    <color name="background_1024">#FFEDC53F</color>
+    <color name="background_2048">#FFEDC22E</color>
+    <color name="background_grid">#FF776E65</color>
 </resources>
