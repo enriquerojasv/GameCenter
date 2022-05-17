@@ -2,13 +2,18 @@ package com.androidclase.gamecenter.menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidclase.gamecenter.R;
+import com.androidclase.gamecenter.SettingsActivity;
+import com.androidclase.gamecenter.game2048.Game2048Activity;
+import com.androidclase.gamecenter.senku.GameSenkuActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -21,17 +26,47 @@ public class MenuActivity extends AppCompatActivity {
 
         ListView menuList = (ListView) findViewById(R.id.listView_menu);
 
-        String[] items = {getResources().getString(R.string.game2048),
-                getResources().getString(R.string.senku), getResources().getString(R.string.help)};
+        String[] items = {getResources().getString(R.string.game2048), getResources().getString(R.string.senku), getResources().getString(R.string.settings)};
 
         ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.menu_item, items);
 
         menuList.setAdapter(adapt);
 
+        menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                Toast.makeText(MenuActivity.this, "Clicking: " +
+                        menuList.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+
+                switch (position) {
+                    case 0:
+                        launch2048(view);
+                        break;
+                    case 1:
+                        launchSenku(view);
+                        break;
+                    case 2:
+                        launchSettings(view);
+                }
+            }
+        });
 
     }
 
-    public void OnClick(View v) {
-        Toast.makeText(this, "Actividad pendiente", Toast.LENGTH_SHORT).show();
+    public void launchSenku(View v) {
+        Intent senkuIntent = new Intent(this, GameSenkuActivity.class);
+        startActivity(senkuIntent);
+    }
+
+    public void launch2048(View v) {
+        Intent intent2048 = new Intent(this, Game2048Activity.class);
+        startActivity(intent2048);
+    }
+
+    public void launchSettings(View v) {
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        startActivity(settingsIntent);
     }
 }
