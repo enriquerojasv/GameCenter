@@ -1,14 +1,11 @@
-package com.androidclase.splash;
+package com.androidclase.gamecenter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;

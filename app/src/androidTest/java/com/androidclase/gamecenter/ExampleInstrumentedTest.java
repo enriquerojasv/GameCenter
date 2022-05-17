@@ -1,4 +1,4 @@
-package com.androidclase.splash;
+package com.androidclase.gamecenter;
 
 import android.content.Context;
 

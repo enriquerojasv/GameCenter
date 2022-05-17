@@ -1,26 +1,20 @@
-package com.androidclase.splash;
+package com.androidclase.gamecenter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
-import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameSenku extends AppCompatActivity {
+public class GameSenkuActivity extends AppCompatActivity {
 
-    GridView gridView;
-    TextView move_counter;
-
-    int[][] grid1 = {
+    public static final int[][] GRID_1 = {
             {0, 0, 2, 2, 2, 0, 0},
             {0, 0, 2, 1, 2, 0, 0},
             {2, 2, 2, 1, 2, 2, 2},
@@ -29,8 +23,7 @@ public class GameSenku extends AppCompatActivity {
             {0, 0, 2, 1, 2, 0, 0},
             {0, 0, 2, 2, 2, 0, 0}
     };
-
-    int[][] grid2 = {
+    public static final int[][] GRID_2 = {
             {0, 0, 2, 1, 1, 0, 0},
             {0, 1, 1, 1, 1, 1, 0},
             {1, 1, 1, 1, 1, 1, 1},
@@ -39,8 +32,7 @@ public class GameSenku extends AppCompatActivity {
             {0, 1, 1, 1, 1, 1, 0},
             {0, 0, 1, 1, 1, 0, 0}
     };
-
-    int[][] grid3 = {
+    public static final int[][] GRID_3 = {
             {0, 0, 1, 1, 1, 0, 0, 0},
             {0, 0, 1, 1, 1, 0, 0, 0},
             {0, 0, 1, 1, 1, 0, 0, 0},
@@ -50,8 +42,7 @@ public class GameSenku extends AppCompatActivity {
             {0, 0, 1, 1, 1, 0, 0, 0},
             {0, 0, 1, 1, 1, 0, 0, 0}
     };
-
-    int[][] grid4 = {
+    public static final int[][] GRID_4 = {
             {0, 0, 0, 1, 1, 1, 0, 0, 0},
             {0, 0, 0, 1, 1, 1, 0, 0, 0},
             {0, 0, 0, 1, 1, 1, 0, 0, 0},
@@ -62,9 +53,7 @@ public class GameSenku extends AppCompatActivity {
             {0, 0, 0, 1, 1, 1, 0, 0, 0},
             {0, 0, 0, 1, 1, 1, 0, 0, 0}
     };
-
-
-    int[][] grid5 = {
+    public static final int[][] GRID_5 = {
 
             {0, 0, 0, 2, 2, 2, 0, 0, 0},
             {0, 0, 0, 2, 2, 2, 0, 0, 0},
@@ -77,7 +66,9 @@ public class GameSenku extends AppCompatActivity {
             {0, 0, 0, 2, 2, 2, 0, 0, 0}
     };
 
-    int[][] selectedGrid = grid1;
+    private GridView gridViewBoard;
+    private TextView moveCounter;
+    private int[][] selectedGrid = GRID_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +79,10 @@ public class GameSenku extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game_senku);
 
-        gridView = findViewById(R.id.gridView);
-        move_counter = findViewById(R.id.move_counter);
+        gridViewBoard = findViewById(R.id.grid_view_board);
+        moveCounter = findViewById(R.id.move_counter);
 
         ArrayList<SenkuBoxModel> boxModelArrayList = new ArrayList<SenkuBoxModel>();
 
@@ -100,23 +91,23 @@ public class GameSenku extends AppCompatActivity {
 
         switch (n) {
             case 0:
-                selectedGrid = grid1;
+                selectedGrid = GRID_1;
                 break;
             case 1:
-                selectedGrid = grid2;
+                selectedGrid = GRID_2;
                 break;
             case 2:
-                selectedGrid = grid3;
+                selectedGrid = GRID_3;
                 break;
             case 3:
-                selectedGrid = grid4;
+                selectedGrid = GRID_4;
                 break;
             default:
                 break;
         }
 
 
-        gridView.setNumColumns(selectedGrid.length);
+        gridViewBoard.setNumColumns(selectedGrid.length);
 
         for (int i = 0; i < selectedGrid.length; i++) {
             for (int j = 0; j < selectedGrid.length; j++) {
@@ -144,8 +135,8 @@ public class GameSenku extends AppCompatActivity {
         Chronometer timer = (Chronometer) findViewById(R.id.timer);
 
         SenkuBoxAdapter boxAdapter = new SenkuBoxAdapter(this, boxModelArrayList,
-                selectedGrid, move_counter, timer);
-        gridView.setAdapter(boxAdapter);
+                selectedGrid, moveCounter, timer);
+        gridViewBoard.setAdapter(boxAdapter);
 
     }
 }

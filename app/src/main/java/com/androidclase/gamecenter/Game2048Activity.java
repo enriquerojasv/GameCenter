@@ -1,4 +1,4 @@
-package com.androidclase.splash;
+package com.androidclase.gamecenter;
 
 import android.os.Bundle;
 
@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Game2048 extends AppCompatActivity {
+public class Game2048Activity extends AppCompatActivity {
 
     private TextView mTextView;
 

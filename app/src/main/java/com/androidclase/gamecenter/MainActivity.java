@@ -1,4 +1,4 @@
-package com.androidclase.splash;
+package com.androidclase.gamecenter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
