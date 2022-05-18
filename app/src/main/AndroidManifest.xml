@@ -31,6 +31,9 @@
         <activity
             android:name="com.androidclase.gamecenter.game2048.Game2048Activity"
             android:label="@string/title_activity_game2048" />
+        <activity
+            android:name=".game2048.GameOver2048Activity"
+            android:label="@string/title_activity_2048_game_over" />
     </application>
 
 </manifest>

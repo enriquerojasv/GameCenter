@@ -3,6 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/cell_1024.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/cell_128.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/cell_16.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/cell_2.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/cell_64.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_cell_2048.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_cell_256.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_cell_32.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_cell_4.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_cell_512.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_cell_64.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_cell_8.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_cell_empty.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_score_bg.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_table.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_transparent_bg.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/senku_box_bg.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_g2048_gameover.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_2048.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_menu.xml" value="0.2689969604863222" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/Splash/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.38" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/Splash/app/src/main/res/drawable/ic_launcher_background.xml" value="0.38" />

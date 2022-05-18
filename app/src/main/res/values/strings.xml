@@ -14,4 +14,22 @@
     <string name="version">Version 9.2.1</string>
     <string name="title_activity_menu">Menu</string>
     <string name="title_activity_senku_game_over">senkuGameOver</string>
+    <string name="score">SCORE</string>
+    <string name="_0">0</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="title_activity_2048_game_over">g2048GameOver</string>
+
+    <string-array name="numbers">
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+        <item>16</item>
+        <item>32</item>
+        <item>64</item>
+        <item>128</item>
+        <item>256</item>
+        <item>512</item>
+        <item>1024</item>
+        <item>2048</item>
+    </string-array>
 </resources>

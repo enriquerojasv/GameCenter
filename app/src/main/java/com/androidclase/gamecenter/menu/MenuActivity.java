@@ -17,6 +17,10 @@ import com.androidclase.gamecenter.senku.GameSenkuActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
+    final int GAME2048 = 0;
+    final int SENKU = 1;
+    final int SETTINGS = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +37,6 @@ public class MenuActivity extends AppCompatActivity {
         menuList.setAdapter(adapt);
 
         menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
@@ -41,28 +44,27 @@ public class MenuActivity extends AppCompatActivity {
                         menuList.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
 
                 switch (position) {
-                    case 0:
+                    case GAME2048:
                         launch2048(view);
                         break;
-                    case 1:
+                    case SENKU:
                         launchSenku(view);
                         break;
-                    case 2:
+                    case SETTINGS:
                         launchSettings(view);
                 }
             }
         });
-
-    }
-
-    public void launchSenku(View v) {
-        Intent senkuIntent = new Intent(this, GameSenkuActivity.class);
-        startActivity(senkuIntent);
     }
 
     public void launch2048(View v) {
         Intent intent2048 = new Intent(this, Game2048Activity.class);
         startActivity(intent2048);
+    }
+    
+    public void launchSenku(View v) {
+        Intent senkuIntent = new Intent(this, GameSenkuActivity.class);
+        startActivity(senkuIntent);
     }
 
     public void launchSettings(View v) {
