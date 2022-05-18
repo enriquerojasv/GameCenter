@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Splash">
         <activity
+            android:name=".settings.MainSettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:label="@string/title_activity_splash">
@@ -23,13 +26,13 @@
             android:name=".menu.MenuActivity"
             android:label="@string/title_activity_menu" />
         <activity
-            android:name="com.androidclase.gamecenter.senku.GameSenkuActivity"
+            android:name=".senku.GameSenkuActivity"
             android:label="@string/title_activity_game_senku" />
         <activity
-            android:name="com.androidclase.gamecenter.senku.SenkuGameOverActivity"
+            android:name=".senku.SenkuGameOverActivity"
             android:label="@string/title_activity_senku_game_over" />
         <activity
-            android:name="com.androidclase.gamecenter.game2048.Game2048Activity"
+            android:name=".game2048.Game2048Activity"
             android:label="@string/title_activity_game2048" />
         <activity
             android:name=".game2048.GameOver2048Activity"

@@ -1,13 +1,13 @@
 package com.androidclase.gamecenter.senku;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidclase.gamecenter.R;
 
@@ -107,7 +107,6 @@ public class GameSenkuActivity extends AppCompatActivity {
             default:
                 break;
         }
-
 
         gridViewBoard.setNumColumns(selectedGrid.length);
 

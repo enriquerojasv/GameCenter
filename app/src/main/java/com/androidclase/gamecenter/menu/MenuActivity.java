@@ -1,7 +1,5 @@
 package com.androidclase.gamecenter.menu;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.androidclase.gamecenter.R;
-import com.androidclase.gamecenter.SettingsActivity;
 import com.androidclase.gamecenter.game2048.Game2048Activity;
 import com.androidclase.gamecenter.senku.GameSenkuActivity;
+import com.androidclase.gamecenter.settings.MainSettingsActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -68,7 +68,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void launchSettings(View v) {
-        Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        Intent settingsIntent = new Intent(this, MainSettingsActivity.class);
         startActivity(settingsIntent);
     }
 }
