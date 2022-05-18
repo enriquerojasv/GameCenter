@@ -1,8 +1,5 @@
 package com.androidclase.gamecenter.game2048;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GestureDetectorCompat;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +14,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Chronometer;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
 
 import com.androidclase.gamecenter.R;
 
@@ -274,27 +274,18 @@ public class Game2048Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        setupFullscreen();
 
         setContentView(R.layout.activity_game_2048);
 
+        // TODO: 18/05/2022 remove context variable
         context = this;
 
-        pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-        editor = pref.edit();
+        setupSharePreferences();
 
-        pulse = AnimationUtils.loadAnimation(this, R.anim.g2048_pulse);
-        spawn = AnimationUtils.loadAnimation(this, R.anim.g2048_spawn);
+        setupAnimations();
 
-        best_score = findViewById(R.id.best_value);
-        score = findViewById(R.id.score_value);
-        move = findViewById(R.id.move_counter);
-
-        best_value = pref.getInt("best_score", 0);
-        best_score.setText(String.valueOf(best_value));
+        scoreLogic();
 
         cells[0][0] = findViewById(R.id.cell_0);
         cells[0][1] = findViewById(R.id.cell_1);
@@ -323,6 +314,33 @@ public class Game2048Activity extends AppCompatActivity {
         timer.start();
 
         detector = new GestureDetectorCompat(this, new MyGestureListener());
+    }
+
+    private void scoreLogic() {
+        best_score = findViewById(R.id.best_value);
+        score = findViewById(R.id.score_value);
+        move = findViewById(R.id.move_counter);
+
+        best_value = pref.getInt("best_score", 0);
+        best_score.setText(String.valueOf(best_value));
+    }
+
+    private void setupAnimations() {
+        pulse = AnimationUtils.loadAnimation(this, R.anim.g2048_pulse);
+        spawn = AnimationUtils.loadAnimation(this, R.anim.g2048_spawn);
+    }
+
+    private void setupSharePreferences() {
+        // TODO: 18/05/2022 review shared-preferences official setup. possible highscore solution
+        pref = getApplicationContext().getSharedPreferences("g2048Records", 0);
+        editor = pref.edit();
+    }
+
+    private void setupFullscreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
     }
     // GESTURE DETECTION
 
