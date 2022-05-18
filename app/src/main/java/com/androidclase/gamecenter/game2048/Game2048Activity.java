@@ -287,6 +287,23 @@ public class Game2048Activity extends AppCompatActivity {
 
         scoreLogic();
 
+        createUI();
+
+        generateCell(2);
+
+        setupTimer();
+
+        detector = new GestureDetectorCompat(this, new MyGestureListener());
+    }
+
+    private void setupTimer() {
+        timer = (Chronometer) findViewById(R.id.timer);
+        timer.setBase(SystemClock.elapsedRealtime());
+
+        timer.start();
+    }
+
+    private void createUI() {
         cells[0][0] = findViewById(R.id.cell_0);
         cells[0][1] = findViewById(R.id.cell_1);
         cells[0][2] = findViewById(R.id.cell_2);
@@ -306,14 +323,6 @@ public class Game2048Activity extends AppCompatActivity {
         cells[3][1] = findViewById(R.id.cell_13);
         cells[3][2] = findViewById(R.id.cell_14);
         cells[3][3] = findViewById(R.id.cell_15);
-
-        generateCell(2);
-
-        timer = (Chronometer) findViewById(R.id.timer);
-        timer.setBase(SystemClock.elapsedRealtime());
-        timer.start();
-
-        detector = new GestureDetectorCompat(this, new MyGestureListener());
     }
 
     private void scoreLogic() {
