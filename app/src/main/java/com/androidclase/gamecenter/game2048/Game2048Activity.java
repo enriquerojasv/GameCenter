@@ -24,29 +24,30 @@ import java.util.Random;
 
 public class Game2048Activity extends AppCompatActivity {
 
+    public static final int BOARD_SIZE = 4;
+    public static final int[] CELL_BG = {R.drawable.g2048_cell_empty, R.drawable.g2048_cell_2,
+            R.drawable.g2048_cell_4, R.drawable.g2048_cell_8, R.drawable.g2048_cell_16,
+            R.drawable.g2048_cell_32, R.drawable.g2048_cell_64, R.drawable.g2048_cell_128,
+            R.drawable.g2048_cell_256, R.drawable.g2048_cell_512, R.drawable.g2048_cell_1024,
+            R.drawable.g2048_cell_2048};
+    public static final TextView[][] BOARD_CELLS = new TextView[BOARD_SIZE][BOARD_SIZE];
     private static SharedPreferences pref;
     private static SharedPreferences.Editor editor;
-    private static int SIZE = 4;
-    private static int moves_value = 1;
+    public static final String[] CELL_VALUES = {"", "2", "4", "8", "16", "32", "64",
+            "128", "256", "512", "1024", "2048"};
     private static TextView move;
     private static TextView score;
-    private static TextView best_score;
-    private static int best_value;
+    private static int movesValue = 1;
+    private static TextView bestScore;
     private static Game2048Activity context;
-    private static TextView[][] cells = new TextView[SIZE][SIZE];
-    private static String[] cell_values = {"", "2", "4", "8", "16", "32", "64",
-            "128", "256", "512", "1024", "2048"};
-    private static int[] cell_bg = {R.drawable.g2048_cell_empty, R.drawable.g2048_cell_2, R.drawable.g2048_cell_4,
-            R.drawable.g2048_cell_8, R.drawable.g2048_cell_16, R.drawable.g2048_cell_32, R.drawable.g2048_cell_64,
-            R.drawable.g2048_cell_128, R.drawable.g2048_cell_256, R.drawable.g2048_cell_512, R.drawable.g2048_cell_1024,
-            R.drawable.g2048_cell_2048};
     private static String lastCombined = "";
     private static int impossibleMoves = 0;
-    private static int score_value = 0;
+    private static int bestValue;
     private static Chronometer timer;
     private static Animation pulse;
     private static Animation spawn;
     private GestureDetectorCompat detector;
+    private static int scoreValue = 0;
 
     private static void checkPossibleMovements() {
 
@@ -59,9 +60,9 @@ public class Game2048Activity extends AppCompatActivity {
 
         //Checks all impossible moves Up and Left. If there are 48 impossible moves, you can move in
         //that direction
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                for (int k = 0; k < SIZE; k++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                for (int k = 0; k < BOARD_SIZE; k++) {
                     impossibleMoves = 0;
                     checkMovement(i, j, -1, 0, true);
                     movesUp += impossibleMoves;
@@ -74,9 +75,9 @@ public class Game2048Activity extends AppCompatActivity {
 
         //Checks all impossible moves Down and Right. If there are 48 impossible moves, you can move
         //in that direction
-        for (int i = SIZE - 1; i >= 0; i--) {
-            for (int j = SIZE - 1; j >= 0; j--) {
-                for (int k = SIZE - 1; k >= 0; k--) {
+        for (int i = BOARD_SIZE - 1; i >= 0; i--) {
+            for (int j = BOARD_SIZE - 1; j >= 0; j--) {
+                for (int k = BOARD_SIZE - 1; k >= 0; k--) {
                     impossibleMoves = 0;
                     checkMovement(i, j, 1, 0, true);
                     movesDown += impossibleMoves;
@@ -111,8 +112,8 @@ public class Game2048Activity extends AppCompatActivity {
             }
 
 
-            intent.putExtra("score", score_value);
-            intent.putExtra("moves", moves_value);
+            intent.putExtra("score", scoreValue);
+            intent.putExtra("moves", movesValue);
 
             long elapsedMillis = SystemClock.elapsedRealtime() - timer.getBase();
             intent.putExtra("ms", elapsedMillis);
@@ -124,31 +125,24 @@ public class Game2048Activity extends AppCompatActivity {
     private static void generateCell(int quantity) {
         int emptyCells = 0;
 
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                if (cells[i][j].getText() == "") {
-                    emptyCells += 1;
-                }
-            }
-        }
+        emptyCells = getEmptyCells(emptyCells);
 
         if (emptyCells >= 1) {
             int counter = 0;
             Random r = new Random();
 
             while (counter < quantity) {
+                int ran1 = r.nextInt(BOARD_SIZE);
+                int ran2 = r.nextInt(BOARD_SIZE);
 
-                int r_1 = r.nextInt(SIZE);
-                int r_2 = r.nextInt(SIZE);
+                if (BOARD_CELLS[ran1][ran2].getText() == "") {
+                    int ran3 = r.nextInt(2) + 1;
 
-                if (cells[r_1][r_2].getText() == "") {
-                    int r_3 = r.nextInt(2) + 1;
-
-                    cells[r_1][r_2].setText(cell_values[r_3]);
-                    cells[r_1][r_2].setBackgroundResource(cell_bg[r_3]);
+                    BOARD_CELLS[ran1][ran2].setText(CELL_VALUES[ran3]);
+                    BOARD_CELLS[ran1][ran2].setBackgroundResource(CELL_BG[ran3]);
                     counter += 1;
 
-                    cells[r_1][r_2].startAnimation(spawn);
+                    BOARD_CELLS[ran1][ran2].startAnimation(spawn);
                 }
             }
         } else {
@@ -157,9 +151,20 @@ public class Game2048Activity extends AppCompatActivity {
 
     }
 
+    private static int getEmptyCells(int emptyCells) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                if (BOARD_CELLS[i][j].getText() == "") {
+                    emptyCells += 1;
+                }
+            }
+        }
+        return emptyCells;
+    }
+
     private static int getIndex(String text) {
-        for (int i = 0; i < cell_values.length; i++) {
-            if (cell_values[i].contentEquals(text)) {
+        for (int i = 0; i < CELL_VALUES.length; i++) {
+            if (CELL_VALUES[i].contentEquals(text)) {
                 return i;
             }
         }
@@ -175,7 +180,7 @@ public class Game2048Activity extends AppCompatActivity {
 
         //right
         else if (horizontal == 1) {
-            return y >= SIZE;
+            return y >= BOARD_SIZE;
         }
 
         //up
@@ -185,7 +190,7 @@ public class Game2048Activity extends AppCompatActivity {
 
         //down
         else if (vertical == 1) {
-            return x >= SIZE;
+            return x >= BOARD_SIZE;
         }
         return false;
 
@@ -198,7 +203,7 @@ public class Game2048Activity extends AppCompatActivity {
         int newY = y;
         String new_value;
 
-        String cellText = (String) cells[x][y].getText();
+        String cellText = (String) BOARD_CELLS[x][y].getText();
 
         if (cellText == "") canMove = false;
 
@@ -209,49 +214,49 @@ public class Game2048Activity extends AppCompatActivity {
             //Check if the next cell is outside bounds
             if (checkBounds(newX, newY, vertical, horizontal)) break;
 
-            String newText = (String) cells[newX][newY].getText();
+            String newText = (String) BOARD_CELLS[newX][newY].getText();
 
             if (newText == "") {
                 if (!check) {
-                    cells[newX][newY].setText(cell_values[getIndex(cellText)]);
-                    cells[newX][newY].setBackgroundResource(cell_bg[getIndex(cellText)]);
+                    BOARD_CELLS[newX][newY].setText(CELL_VALUES[getIndex(cellText)]);
+                    BOARD_CELLS[newX][newY].setBackgroundResource(CELL_BG[getIndex(cellText)]);
 
-                    cells[newX - vertical][newY - horizontal].setText(cell_values[0]);
-                    cells[newX - vertical][newY - horizontal].setBackgroundResource(cell_bg[0]);
+                    BOARD_CELLS[newX - vertical][newY - horizontal].setText(CELL_VALUES[0]);
+                    BOARD_CELLS[newX - vertical][newY - horizontal].setBackgroundResource(CELL_BG[0]);
                 }
                 impossibleMoves = 0;
 
             } else if (newText == cellText && cellText != lastCombined) {
                 if (!check) {
 
-                    new_value = cell_values[getIndex(cellText) + 1];
+                    new_value = CELL_VALUES[getIndex(cellText) + 1];
 
-                    cells[newX][newY].setText(new_value);
-                    cells[newX][newY].setBackgroundResource(cell_bg[getIndex(cellText) + 1]);
+                    BOARD_CELLS[newX][newY].setText(new_value);
+                    BOARD_CELLS[newX][newY].setBackgroundResource(CELL_BG[getIndex(cellText) + 1]);
 
-                    cells[newX - vertical][newY - horizontal].setText(cell_values[0]);
-                    cells[newX - vertical][newY - horizontal].setBackgroundResource(cell_bg[0]);
+                    BOARD_CELLS[newX - vertical][newY - horizontal].setText(CELL_VALUES[0]);
+                    BOARD_CELLS[newX - vertical][newY - horizontal].setBackgroundResource(CELL_BG[0]);
 
-                    lastCombined = cell_values[getIndex(cellText) + 1];
+                    lastCombined = CELL_VALUES[getIndex(cellText) + 1];
 
                     //Update current score
-                    score_value = Integer.parseInt(score.getText().toString()) +
+                    scoreValue = Integer.parseInt(score.getText().toString()) +
                             Integer.parseInt(new_value);
 
-                    score.setText(String.valueOf(score_value));
+                    score.setText(String.valueOf(scoreValue));
 
                     //Check if it has to update de best score
-                    if (score_value > best_value) {
-                        best_value = score_value;
+                    if (scoreValue > bestValue) {
+                        bestValue = scoreValue;
 
-                        editor.putInt("best_score", score_value);
+                        editor.putInt("best_score", scoreValue);
                         editor.commit();
 
-                        best_score.setText(String.valueOf(best_value));
+                        bestScore.setText(String.valueOf(bestValue));
                     }
 
                     //Animation
-                    cells[newX][newY].startAnimation(pulse);
+                    BOARD_CELLS[newX][newY].startAnimation(pulse);
 
 
                     if (new_value == "2048") {
@@ -304,34 +309,34 @@ public class Game2048Activity extends AppCompatActivity {
     }
 
     private void createUI() {
-        cells[0][0] = findViewById(R.id.cell_0);
-        cells[0][1] = findViewById(R.id.cell_1);
-        cells[0][2] = findViewById(R.id.cell_2);
-        cells[0][3] = findViewById(R.id.cell_3);
+        BOARD_CELLS[0][0] = findViewById(R.id.cell_0);
+        BOARD_CELLS[0][1] = findViewById(R.id.cell_1);
+        BOARD_CELLS[0][2] = findViewById(R.id.cell_2);
+        BOARD_CELLS[0][3] = findViewById(R.id.cell_3);
 
-        cells[1][0] = findViewById(R.id.cell_4);
-        cells[1][1] = findViewById(R.id.cell_5);
-        cells[1][2] = findViewById(R.id.cell_6);
-        cells[1][3] = findViewById(R.id.cell_7);
+        BOARD_CELLS[1][0] = findViewById(R.id.cell_4);
+        BOARD_CELLS[1][1] = findViewById(R.id.cell_5);
+        BOARD_CELLS[1][2] = findViewById(R.id.cell_6);
+        BOARD_CELLS[1][3] = findViewById(R.id.cell_7);
 
-        cells[2][0] = findViewById(R.id.cell_8);
-        cells[2][1] = findViewById(R.id.cell_9);
-        cells[2][2] = findViewById(R.id.cell_10);
-        cells[2][3] = findViewById(R.id.cell_11);
+        BOARD_CELLS[2][0] = findViewById(R.id.cell_8);
+        BOARD_CELLS[2][1] = findViewById(R.id.cell_9);
+        BOARD_CELLS[2][2] = findViewById(R.id.cell_10);
+        BOARD_CELLS[2][3] = findViewById(R.id.cell_11);
 
-        cells[3][0] = findViewById(R.id.cell_12);
-        cells[3][1] = findViewById(R.id.cell_13);
-        cells[3][2] = findViewById(R.id.cell_14);
-        cells[3][3] = findViewById(R.id.cell_15);
+        BOARD_CELLS[3][0] = findViewById(R.id.cell_12);
+        BOARD_CELLS[3][1] = findViewById(R.id.cell_13);
+        BOARD_CELLS[3][2] = findViewById(R.id.cell_14);
+        BOARD_CELLS[3][3] = findViewById(R.id.cell_15);
     }
 
     private void scoreLogic() {
-        best_score = findViewById(R.id.best_value);
+        bestScore = findViewById(R.id.best_value);
         score = findViewById(R.id.score_value);
         move = findViewById(R.id.move_counter);
 
-        best_value = pref.getInt("best_score", 0);
-        best_score.setText(String.valueOf(best_value));
+        bestValue = pref.getInt("best_score", 0);
+        bestScore.setText(String.valueOf(bestValue));
     }
 
     private void setupAnimations() {
@@ -364,16 +369,16 @@ public class Game2048Activity extends AppCompatActivity {
         timer.stop();
         timer.start();
 
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                cells[i][j].setText(cell_values[0]);
-                cells[i][j].setBackgroundResource(cell_bg[0]);
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                BOARD_CELLS[i][j].setText(CELL_VALUES[0]);
+                BOARD_CELLS[i][j].setBackgroundResource(CELL_BG[0]);
             }
         }
 
         score.setText("0");
         move.setText("0 Moves");
-        moves_value = 1;
+        movesValue = 1;
 
         generateCell(2);
     }
@@ -422,9 +427,9 @@ public class Game2048Activity extends AppCompatActivity {
                 if (inRange(angle, 45, 135)) {
                     Log.d(DEBUG_TAG, "onFling: up");
 
-                    for (int i = 0; i < SIZE; i++) {
-                        for (int j = 0; j < SIZE; j++) {
-                            for (int k = 0; k < SIZE; k++) {
+                    for (int i = 0; i < BOARD_SIZE; i++) {
+                        for (int j = 0; j < BOARD_SIZE; j++) {
+                            for (int k = 0; k < BOARD_SIZE; k++) {
                                 checkMovement(i, j, -1, 0, false);
                             }
                         }
@@ -433,16 +438,16 @@ public class Game2048Activity extends AppCompatActivity {
                     generateCell(1);
                     lastCombined = "";
 
-                    move.setText(moves_value++ + " Moves");
+                    move.setText(movesValue++ + " Moves");
 
                     return Direction.up;
 
                 } else if (inRange(angle, 0, 45) || inRange(angle, 315, 360)) {
                     Log.d(DEBUG_TAG, "onFling: right");
 
-                    for (int i = SIZE - 1; i >= 0; i--) {
-                        for (int j = SIZE - 1; j >= 0; j--) {
-                            for (int k = SIZE - 1; k >= 0; k--) {
+                    for (int i = BOARD_SIZE - 1; i >= 0; i--) {
+                        for (int j = BOARD_SIZE - 1; j >= 0; j--) {
+                            for (int k = BOARD_SIZE - 1; k >= 0; k--) {
                                 checkMovement(i, j, 0, 1, false);
                             }
                         }
@@ -451,16 +456,16 @@ public class Game2048Activity extends AppCompatActivity {
                     generateCell(1);
                     lastCombined = "";
 
-                    move.setText(moves_value++ + " Moves");
+                    move.setText(movesValue++ + " Moves");
 
                     return Direction.right;
 
                 } else if (inRange(angle, 225, 315)) {
                     Log.d(DEBUG_TAG, "onFling: down");
 
-                    for (int i = SIZE - 1; i >= 0; i--) {
-                        for (int j = SIZE - 1; j >= 0; j--) {
-                            for (int k = SIZE - 1; k >= 0; k--) {
+                    for (int i = BOARD_SIZE - 1; i >= 0; i--) {
+                        for (int j = BOARD_SIZE - 1; j >= 0; j--) {
+                            for (int k = BOARD_SIZE - 1; k >= 0; k--) {
                                 checkMovement(i, j, 1, 0, false);
                             }
                         }
@@ -469,16 +474,16 @@ public class Game2048Activity extends AppCompatActivity {
                     generateCell(1);
                     lastCombined = "";
 
-                    move.setText(moves_value++ + " Moves");
+                    move.setText(movesValue++ + " Moves");
 
                     return Direction.down;
 
                 } else {
                     Log.d(DEBUG_TAG, "onFling: left");
 
-                    for (int i = 0; i < SIZE; i++) {
-                        for (int j = 0; j < SIZE; j++) {
-                            for (int k = 0; k < SIZE; k++) {
+                    for (int i = 0; i < BOARD_SIZE; i++) {
+                        for (int j = 0; j < BOARD_SIZE; j++) {
+                            for (int k = 0; k < BOARD_SIZE; k++) {
                                 checkMovement(i, j, 0, -1, false);
                             }
                         }
@@ -486,7 +491,7 @@ public class Game2048Activity extends AppCompatActivity {
 
                     generateCell(1);
                     lastCombined = "";
-                    move.setText(moves_value++ + " Moves");
+                    move.setText(movesValue++ + " Moves");
 
                     return Direction.left;
 
