@@ -18,6 +18,9 @@
     <string name="_0">0</string>
     <string name="game_over">GAME OVER</string>
     <string name="title_activity_2048_game_over">g2048GameOver</string>
+    <string name="senku_caps">SENKU</string>
+    <string name="best_score">BEST SCORE</string>
+    <string name="_0_moves">0 Moves</string>
 
     <string-array name="numbers">
         <item>2</item>

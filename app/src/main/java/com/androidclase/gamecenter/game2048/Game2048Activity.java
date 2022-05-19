@@ -31,23 +31,24 @@ public class Game2048Activity extends AppCompatActivity {
             R.drawable.g2048_cell_256, R.drawable.g2048_cell_512, R.drawable.g2048_cell_1024,
             R.drawable.g2048_cell_2048};
     public static final TextView[][] BOARD_CELLS = new TextView[BOARD_SIZE][BOARD_SIZE];
-    private static SharedPreferences pref;
-    private static SharedPreferences.Editor editor;
     public static final String[] CELL_VALUES = {"", "2", "4", "8", "16", "32", "64",
             "128", "256", "512", "1024", "2048"};
-    private static TextView move;
-    private static TextView score;
+    public static final int STARTING_CELLS = 2;
+    private static SharedPreferences sharedPreferences;
+    private static SharedPreferences.Editor editor;
+    private static TextView moveLyView;
+    private static TextView scoreLyView;
     private static int movesValue = 1;
-    private static TextView bestScore;
+    private static TextView bestScoreLyView;
     private static Game2048Activity context;
     private static String lastCombined = "";
     private static int impossibleMoves = 0;
-    private static int bestValue;
+    private static int bestScoreValue;
     private static Chronometer timer;
     private static Animation pulse;
     private static Animation spawn;
-    private GestureDetectorCompat detector;
     private static int scoreValue = 0;
+    private GestureDetectorCompat detector;
 
     private static void checkPossibleMovements() {
 
@@ -94,8 +95,6 @@ public class Game2048Activity extends AppCompatActivity {
         if (movesLeft == 48) movesTotal -= 1;
 
         winCheck(movesTotal, false);
-
-
     }
 
     private static void winCheck(int movesTotal, boolean win) {
@@ -111,7 +110,6 @@ public class Game2048Activity extends AppCompatActivity {
                 intent.putExtra("bonus", 1.5);
             }
 
-
             intent.putExtra("score", scoreValue);
             intent.putExtra("moves", movesValue);
 
@@ -122,20 +120,20 @@ public class Game2048Activity extends AppCompatActivity {
         }
     }
 
-    private static void generateCell(int quantity) {
-        int emptyCells = 0;
+    //fills a new cell if possible
+    private static void generateCell(int cellQuantity) {
 
-        emptyCells = getEmptyCells(emptyCells);
+        int emptyCells = getEmptyCells();
 
         if (emptyCells >= 1) {
             int counter = 0;
             Random r = new Random();
 
-            while (counter < quantity) {
+            while (counter < cellQuantity) {
                 int ran1 = r.nextInt(BOARD_SIZE);
                 int ran2 = r.nextInt(BOARD_SIZE);
 
-                if (BOARD_CELLS[ran1][ran2].getText() == "") {
+                if (BOARD_CELLS[ran1][ran2].getText().toString().isEmpty()) {
                     int ran3 = r.nextInt(2) + 1;
 
                     BOARD_CELLS[ran1][ran2].setText(CELL_VALUES[ran3]);
@@ -148,10 +146,12 @@ public class Game2048Activity extends AppCompatActivity {
         } else {
             checkPossibleMovements();
         }
-
     }
 
-    private static int getEmptyCells(int emptyCells) {
+    //returns the number of empty cells
+    private static int getEmptyCells() {
+        int emptyCells = 0;
+
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 if (BOARD_CELLS[i][j].getText() == "") {
@@ -177,46 +177,41 @@ public class Game2048Activity extends AppCompatActivity {
         if (horizontal == -1) {
             return y < 0;
         }
-
         //right
         else if (horizontal == 1) {
             return y >= BOARD_SIZE;
         }
-
         //up
         else if (vertical == -1) {
             return x < 0;
         }
-
         //down
         else if (vertical == 1) {
             return x >= BOARD_SIZE;
         }
         return false;
-
     }
 
     private static void checkMovement(int x, int y, int vertical, int horizontal, boolean check) {
         boolean canMove = true;
-
         int newX = x;
         int newY = y;
-        String new_value;
+        String newValue;
 
         String cellText = (String) BOARD_CELLS[x][y].getText();
 
-        if (cellText == "") canMove = false;
+        if (cellText.equals("")) canMove = false;
 
         while (canMove) {
             newX += vertical;
             newY += horizontal;
 
-            //Check if the next cell is outside bounds
+            //Check if the next cell is out of bounds
             if (checkBounds(newX, newY, vertical, horizontal)) break;
 
             String newText = (String) BOARD_CELLS[newX][newY].getText();
 
-            if (newText == "") {
+            if (newText.equals("")) {
                 if (!check) {
                     BOARD_CELLS[newX][newY].setText(CELL_VALUES[getIndex(cellText)]);
                     BOARD_CELLS[newX][newY].setBackgroundResource(CELL_BG[getIndex(cellText)]);
@@ -226,12 +221,12 @@ public class Game2048Activity extends AppCompatActivity {
                 }
                 impossibleMoves = 0;
 
-            } else if (newText == cellText && cellText != lastCombined) {
+            } else if (newText.equals(cellText) && !cellText.equals(lastCombined)) {
                 if (!check) {
 
-                    new_value = CELL_VALUES[getIndex(cellText) + 1];
+                    newValue = CELL_VALUES[getIndex(cellText) + 1];
 
-                    BOARD_CELLS[newX][newY].setText(new_value);
+                    BOARD_CELLS[newX][newY].setText(newValue);
                     BOARD_CELLS[newX][newY].setBackgroundResource(CELL_BG[getIndex(cellText) + 1]);
 
                     BOARD_CELLS[newX - vertical][newY - horizontal].setText(CELL_VALUES[0]);
@@ -239,31 +234,15 @@ public class Game2048Activity extends AppCompatActivity {
 
                     lastCombined = CELL_VALUES[getIndex(cellText) + 1];
 
-                    //Update current score
-                    scoreValue = Integer.parseInt(score.getText().toString()) +
-                            Integer.parseInt(new_value);
-
-                    score.setText(String.valueOf(scoreValue));
-
-                    //Check if it has to update de best score
-                    if (scoreValue > bestValue) {
-                        bestValue = scoreValue;
-
-                        editor.putInt("best_score", scoreValue);
-                        editor.commit();
-
-                        bestScore.setText(String.valueOf(bestValue));
-                    }
+                    scoreUpdater(newValue);
+                    bestScoreUpdater();
 
                     //Animation
                     BOARD_CELLS[newX][newY].startAnimation(pulse);
 
-
-                    if (new_value == "2048") {
+                    if (newValue == "2048") {
                         winCheck(2048, true);
                     }
-
-
                 }
                 canMove = false;
                 impossibleMoves = 0;
@@ -271,34 +250,53 @@ public class Game2048Activity extends AppCompatActivity {
                 impossibleMoves = 1;
                 canMove = false;
             }
-
         }
+    }
+
+    //Check if it has to update the best score
+    private static void bestScoreUpdater() {
+        if (scoreValue > bestScoreValue) {
+            bestScoreValue = scoreValue;
+
+            editor.putInt("best_score", scoreValue);
+            editor.commit();
+
+            bestScoreLyView.setText(String.valueOf(bestScoreValue));
+        }
+    }
+
+    //Updates current score
+    private static void scoreUpdater(String newValue) {
+        scoreValue = Integer.parseInt(scoreLyView.getText().toString()) +
+                Integer.parseInt(newValue);
+
+        scoreLyView.setText(String.valueOf(scoreValue));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setupFullscreen();
-
-        setContentView(R.layout.activity_game_2048);
-
         // TODO: 18/05/2022 remove context variable
         context = this;
 
+        setupFullscreen();
+        setContentView(R.layout.activity_game_2048);
         setupSharePreferences();
-
         setupAnimations();
-
-        scoreLogic();
-
+        initScoreViews();
+        initBestScore();
         createUI();
-
-        generateCell(2);
-
+        generateCell(STARTING_CELLS);
         setupTimer();
 
         detector = new GestureDetectorCompat(this, new MyGestureListener());
+    }
+
+    private void initBestScore() {
+        // TODO: 19/05/2022 change best_score to constant
+        bestScoreValue = sharedPreferences.getInt("best_score", 0);
+        bestScoreLyView.setText(String.valueOf(bestScoreValue));
     }
 
     private void setupTimer() {
@@ -330,13 +328,11 @@ public class Game2048Activity extends AppCompatActivity {
         BOARD_CELLS[3][3] = findViewById(R.id.cell_15);
     }
 
-    private void scoreLogic() {
-        bestScore = findViewById(R.id.best_value);
-        score = findViewById(R.id.score_value);
-        move = findViewById(R.id.move_counter);
-
-        bestValue = pref.getInt("best_score", 0);
-        bestScore.setText(String.valueOf(bestValue));
+    private void initScoreViews() {
+        // TODO: 18/05/2022 standarize id naming with variable naming
+        bestScoreLyView = findViewById(R.id.best_value);
+        scoreLyView = findViewById(R.id.score_value);
+        moveLyView = findViewById(R.id.move_counter);
     }
 
     private void setupAnimations() {
@@ -346,8 +342,8 @@ public class Game2048Activity extends AppCompatActivity {
 
     private void setupSharePreferences() {
         // TODO: 18/05/2022 review shared-preferences official setup. possible highscore solution
-        pref = getApplicationContext().getSharedPreferences("g2048Records", 0);
-        editor = pref.edit();
+        sharedPreferences = getApplicationContext().getSharedPreferences("g2048Records", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
     private void setupFullscreen() {
@@ -376,8 +372,8 @@ public class Game2048Activity extends AppCompatActivity {
             }
         }
 
-        score.setText("0");
-        move.setText("0 Moves");
+        scoreLyView.setText("0");
+        moveLyView.setText("0 Moves");
         movesValue = 1;
 
         generateCell(2);
@@ -438,7 +434,7 @@ public class Game2048Activity extends AppCompatActivity {
                     generateCell(1);
                     lastCombined = "";
 
-                    move.setText(movesValue++ + " Moves");
+                    moveLyView.setText(movesValue++ + " Moves");
 
                     return Direction.up;
 
@@ -456,7 +452,7 @@ public class Game2048Activity extends AppCompatActivity {
                     generateCell(1);
                     lastCombined = "";
 
-                    move.setText(movesValue++ + " Moves");
+                    moveLyView.setText(movesValue++ + " Moves");
 
                     return Direction.right;
 
@@ -474,7 +470,7 @@ public class Game2048Activity extends AppCompatActivity {
                     generateCell(1);
                     lastCombined = "";
 
-                    move.setText(movesValue++ + " Moves");
+                    moveLyView.setText(movesValue++ + " Moves");
 
                     return Direction.down;
 
@@ -491,7 +487,7 @@ public class Game2048Activity extends AppCompatActivity {
 
                     generateCell(1);
                     lastCombined = "";
-                    move.setText(movesValue++ + " Moves");
+                    moveLyView.setText(movesValue++ + " Moves");
 
                     return Direction.left;
 

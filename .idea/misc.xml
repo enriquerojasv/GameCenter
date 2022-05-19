@@ -20,8 +20,13 @@
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_table.xml" value="0.4505" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable-v24/g2048_transparent_bg.xml" value="0.4505" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/senku_box_bg.xml" value="0.4505" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/senku_box_possible.xml" value="0.391" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/senku_box_selected.xml" value="0.391" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/senku_box_token.xml" value="0.391" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/senku_table_bg.xml" value="0.391" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_g2048_gameover.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_2048.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_senku.xml" value="0.379981884057971" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_menu.xml" value="0.2689969604863222" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/Splash/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.38" />
         <entry key="..\:/Users/rvenr/AndroidStudioProjects/Splash/app/src/main/res/drawable/ic_launcher_background.xml" value="0.38" />
