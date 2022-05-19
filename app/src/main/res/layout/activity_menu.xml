@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
             android:text="@string/games_text"
-            android:textColor="@color/black"
+            android:textColor="@color/background_newgame"
             android:textStyle="bold"
             android:textSize="30sp" />
 

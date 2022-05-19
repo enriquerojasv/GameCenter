@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,6 +20,7 @@
             android:layout_weight="2"
             android:gravity="bottom|center"
             android:text="@string/amazing_games"
+            android:textColor="@color/background_newgame"
             android:textSize="35sp"
             android:textStyle="bold" />
 
@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/presents"
+            android:textColor="@color/background_newgame"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -48,6 +49,7 @@
             android:layout_weight="2"
             android:gravity="top|center"
             android:text="@string/games"
+            android:textColor="@color/background_newgame"
             android:textSize="20sp"
             android:textStyle="italic" />
 
@@ -56,7 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="@string/version" />
+            android:text="@string/version"
+            android:textColor="@color/background_newgame" />
 
     </LinearLayout>
 </androidx.wear.widget.BoxInsetLayout>

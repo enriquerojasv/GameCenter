@@ -89,7 +89,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0"
+                android:text="@string/_0"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -102,11 +102,10 @@
         <TextView
             android:id="@+id/text_2048"
             android:layout_width="200dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="5dp"
-
-            android:gravity="center"
-            android:text="2048"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:text="@string/game2048"
+            android:textAlignment="textStart"
             android:textColor="@color/background_newgame"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -131,35 +130,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_2048" />
 
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="center"
+            android:text="@string/phrase_2048"
+            android:textColor="@color/background_newgame"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/newButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_2048" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/comment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="Join the numbers and get to the 2048 tile!"
-        android:textColor="@color/background_newgame"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/Table"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/Table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/g2048_table"
         android:padding="@dimen/margin_padding"
         app:columnCount="4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:rowCount="4">
 
         <TextView

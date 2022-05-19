@@ -23,6 +23,7 @@
     <string name="_0_moves">0 Moves</string>
     <string name="new_game">New Game</string>
     <string name="best_score_title">BEST</string>
+    <string name="phrase_2048">Join the numbers and get to the 2048 tile!</string>
 
     <string-array name="numbers">
         <item>2</item>
