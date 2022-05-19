@@ -57,7 +57,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/score_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/best_score"
             android:layout_width="0dp"
@@ -329,7 +328,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="0 Moves"
+        android:text="@string/_0_moves"
         android:textColor="#807265"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/Table"

@@ -23,15 +23,13 @@ import com.androidclase.gamecenter.R;
 import java.util.ArrayList;
 
 public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
-    int[][] grid;
-    boolean selected = false;
-
-    Context context;
-    ViewGroup viewGroup;
-
-    TextView move_counter;
-    int moves = 0;
-    Chronometer timer;
+    private int[][] grid;
+    private boolean selected = false;
+    private Context context;
+    private ViewGroup viewGroup;
+    private TextView moveCounter;
+    private int moves = 0;
+    private Chronometer timer;
 
     public SenkuBoxAdapter(@NonNull Context context, ArrayList<SenkuBoxModel> cellModelArrayList,
                            int[][] selectedGrid, TextView move_count, Chronometer time) {
@@ -39,7 +37,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         this.context = context;
 
         grid = selectedGrid;
-        move_counter = move_count;
+        moveCounter = move_count;
         timer = time;
         checkWin();
 
@@ -54,7 +52,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         viewGroup = parent;
 
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.senku_cells, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.senku_boxes, parent, false);
         }
 
         SenkuBoxModel boxModel = getItem(position);
@@ -63,7 +61,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         ImageView boxBg = listItemView.findViewById(R.id.boxBg);
         ImageView boxCircle = listItemView.findViewById(R.id.boxCircle);
 
-        //We check the grid size and adjust its dimensions
+        //Checking the grid size and adjust dimensions
         if (boxModel.getGridSize() == 8) {
             int boxSize = (int) getContext().getResources().getDimension(R.dimen.box_size_sm);
             boxCard.setLayoutParams(new ViewGroup.LayoutParams(boxSize, boxSize));
@@ -72,7 +70,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
             boxCard.setLayoutParams(new ViewGroup.LayoutParams(boxSize, boxSize));
         }
 
-        //We check whether it should be and empty cell or not
+        //Checking whether it should be an empty box or not
         if (boxModel.getCircleId() == 1) {
             boxCircle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_token));
         } else {
@@ -270,7 +268,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
 
     private void addMove() {
         moves++;
-        move_counter.setText(moves + " Moves");
+        moveCounter.setText(moves + " Moves");
     }
 
     private void checkWin() {

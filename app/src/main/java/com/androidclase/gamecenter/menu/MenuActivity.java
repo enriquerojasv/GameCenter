@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,9 +38,6 @@ public class MenuActivity extends AppCompatActivity {
         menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-                Toast.makeText(MenuActivity.this, "Clicking: " +
-                        menuList.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
 
                 switch (position) {
                     case GAME2048:

@@ -50,6 +50,106 @@ public class Game2048Activity extends AppCompatActivity {
     private static int scoreValue = 0;
     private GestureDetectorCompat detector;
 
+    //Check if it has to update the best score
+    private static void bestScoreUpdater() {
+        if (scoreValue > bestScoreValue) {
+            bestScoreValue = scoreValue;
+
+            editor.putInt("best_score", scoreValue);
+            editor.commit();
+
+            bestScoreLyView.setText(String.valueOf(bestScoreValue));
+        }
+    }
+
+    //Updates current score
+    private static void scoreUpdater(String newValue) {
+        scoreValue = Integer.parseInt(scoreLyView.getText().toString()) +
+                Integer.parseInt(newValue);
+
+        scoreLyView.setText(String.valueOf(scoreValue));
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // TODO: 18/05/2022 remove context variable
+        context = this;
+
+        setupFullscreen();
+        setContentView(R.layout.activity_game_2048);
+        setupSharedPreferences();
+        setupAnimations();
+        initScoreViews();
+        initBestScore();
+        createUI();
+        generateCell(STARTING_CELLS);
+        setupTimer();
+
+        detector = new GestureDetectorCompat(this, new MyGestureListener());
+    }
+
+    private void initBestScore() {
+        // TODO: 19/05/2022 change best_score to constant
+        bestScoreValue = sharedPreferences.getInt("best_score", 0);
+        bestScoreLyView.setText(String.valueOf(bestScoreValue));
+    }
+
+    private void setupTimer() {
+        timer = (Chronometer) findViewById(R.id.timer);
+        timer.setBase(SystemClock.elapsedRealtime());
+
+        timer.start();
+    }
+
+    private void createUI() {
+        BOARD_CELLS[0][0] = findViewById(R.id.cell_0);
+        BOARD_CELLS[0][1] = findViewById(R.id.cell_1);
+        BOARD_CELLS[0][2] = findViewById(R.id.cell_2);
+        BOARD_CELLS[0][3] = findViewById(R.id.cell_3);
+
+        BOARD_CELLS[1][0] = findViewById(R.id.cell_4);
+        BOARD_CELLS[1][1] = findViewById(R.id.cell_5);
+        BOARD_CELLS[1][2] = findViewById(R.id.cell_6);
+        BOARD_CELLS[1][3] = findViewById(R.id.cell_7);
+
+        BOARD_CELLS[2][0] = findViewById(R.id.cell_8);
+        BOARD_CELLS[2][1] = findViewById(R.id.cell_9);
+        BOARD_CELLS[2][2] = findViewById(R.id.cell_10);
+        BOARD_CELLS[2][3] = findViewById(R.id.cell_11);
+
+        BOARD_CELLS[3][0] = findViewById(R.id.cell_12);
+        BOARD_CELLS[3][1] = findViewById(R.id.cell_13);
+        BOARD_CELLS[3][2] = findViewById(R.id.cell_14);
+        BOARD_CELLS[3][3] = findViewById(R.id.cell_15);
+    }
+
+    private void initScoreViews() {
+        // TODO: 18/05/2022 standardize id naming with variable naming
+        bestScoreLyView = findViewById(R.id.best_value);
+        scoreLyView = findViewById(R.id.score_value);
+        moveLyView = findViewById(R.id.move_counter);
+    }
+
+    private void setupAnimations() {
+        pulse = AnimationUtils.loadAnimation(this, R.anim.g2048_pulse);
+        spawn = AnimationUtils.loadAnimation(this, R.anim.g2048_spawn);
+    }
+
+    private void setupSharedPreferences() {
+        // TODO: 18/05/2022 review shared-preferences official setup. possible high score solution
+        sharedPreferences = getApplicationContext().getSharedPreferences("g2048Records", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+    }
+
+    private void setupFullscreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+    }
+
     private static void checkPossibleMovements() {
 
         int movesUp = 0;
@@ -253,113 +353,6 @@ public class Game2048Activity extends AppCompatActivity {
         }
     }
 
-    //Check if it has to update the best score
-    private static void bestScoreUpdater() {
-        if (scoreValue > bestScoreValue) {
-            bestScoreValue = scoreValue;
-
-            editor.putInt("best_score", scoreValue);
-            editor.commit();
-
-            bestScoreLyView.setText(String.valueOf(bestScoreValue));
-        }
-    }
-
-    //Updates current score
-    private static void scoreUpdater(String newValue) {
-        scoreValue = Integer.parseInt(scoreLyView.getText().toString()) +
-                Integer.parseInt(newValue);
-
-        scoreLyView.setText(String.valueOf(scoreValue));
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // TODO: 18/05/2022 remove context variable
-        context = this;
-
-        setupFullscreen();
-        setContentView(R.layout.activity_game_2048);
-        setupSharePreferences();
-        setupAnimations();
-        initScoreViews();
-        initBestScore();
-        createUI();
-        generateCell(STARTING_CELLS);
-        setupTimer();
-
-        detector = new GestureDetectorCompat(this, new MyGestureListener());
-    }
-
-    private void initBestScore() {
-        // TODO: 19/05/2022 change best_score to constant
-        bestScoreValue = sharedPreferences.getInt("best_score", 0);
-        bestScoreLyView.setText(String.valueOf(bestScoreValue));
-    }
-
-    private void setupTimer() {
-        timer = (Chronometer) findViewById(R.id.timer);
-        timer.setBase(SystemClock.elapsedRealtime());
-
-        timer.start();
-    }
-
-    private void createUI() {
-        BOARD_CELLS[0][0] = findViewById(R.id.cell_0);
-        BOARD_CELLS[0][1] = findViewById(R.id.cell_1);
-        BOARD_CELLS[0][2] = findViewById(R.id.cell_2);
-        BOARD_CELLS[0][3] = findViewById(R.id.cell_3);
-
-        BOARD_CELLS[1][0] = findViewById(R.id.cell_4);
-        BOARD_CELLS[1][1] = findViewById(R.id.cell_5);
-        BOARD_CELLS[1][2] = findViewById(R.id.cell_6);
-        BOARD_CELLS[1][3] = findViewById(R.id.cell_7);
-
-        BOARD_CELLS[2][0] = findViewById(R.id.cell_8);
-        BOARD_CELLS[2][1] = findViewById(R.id.cell_9);
-        BOARD_CELLS[2][2] = findViewById(R.id.cell_10);
-        BOARD_CELLS[2][3] = findViewById(R.id.cell_11);
-
-        BOARD_CELLS[3][0] = findViewById(R.id.cell_12);
-        BOARD_CELLS[3][1] = findViewById(R.id.cell_13);
-        BOARD_CELLS[3][2] = findViewById(R.id.cell_14);
-        BOARD_CELLS[3][3] = findViewById(R.id.cell_15);
-    }
-
-    private void initScoreViews() {
-        // TODO: 18/05/2022 standarize id naming with variable naming
-        bestScoreLyView = findViewById(R.id.best_value);
-        scoreLyView = findViewById(R.id.score_value);
-        moveLyView = findViewById(R.id.move_counter);
-    }
-
-    private void setupAnimations() {
-        pulse = AnimationUtils.loadAnimation(this, R.anim.g2048_pulse);
-        spawn = AnimationUtils.loadAnimation(this, R.anim.g2048_spawn);
-    }
-
-    private void setupSharePreferences() {
-        // TODO: 18/05/2022 review shared-preferences official setup. possible highscore solution
-        sharedPreferences = getApplicationContext().getSharedPreferences("g2048Records", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-    }
-
-    private void setupFullscreen() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
-    }
-    // GESTURE DETECTION
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        this.detector.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
-
     public void new_game(View v) {
         timer.setBase(SystemClock.elapsedRealtime());
         timer.stop();
@@ -377,6 +370,13 @@ public class Game2048Activity extends AppCompatActivity {
         movesValue = 1;
 
         generateCell(2);
+    }
+
+    // GESTURE DETECTION
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.detector.onTouchEvent(event);
+        return super.onTouchEvent(event);
     }
 
     static class MyGestureListener extends GestureDetector.SimpleOnGestureListener {

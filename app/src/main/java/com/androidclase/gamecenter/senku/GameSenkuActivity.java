@@ -55,18 +55,6 @@ public class GameSenkuActivity extends AppCompatActivity {
             {0, 0, 0, 1, 1, 1, 0, 0, 0},
             {0, 0, 0, 1, 1, 1, 0, 0, 0}
     };
-    public static final int[][] GRID_5 = {
-
-            {0, 0, 0, 2, 2, 2, 0, 0, 0},
-            {0, 0, 0, 2, 2, 2, 0, 0, 0},
-            {0, 0, 0, 2, 2, 2, 0, 0, 0},
-            {2, 2, 2, 2, 2, 2, 2, 2, 2},
-            {2, 2, 2, 2, 2, 2, 2, 2, 2},
-            {2, 1, 1, 2, 2, 2, 2, 2, 2},
-            {0, 0, 0, 2, 2, 2, 0, 0, 0},
-            {0, 0, 0, 2, 2, 2, 0, 0, 0},
-            {0, 0, 0, 2, 2, 2, 0, 0, 0}
-    };
 
     private GridView gridViewBoard;
     private TextView moveCounter;
@@ -76,38 +64,26 @@ public class GameSenkuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        setupFullscreen();
 
         setContentView(R.layout.activity_game_senku);
-
         gridViewBoard = findViewById(R.id.grid_view_board);
         moveCounter = findViewById(R.id.move_counter);
 
         ArrayList<SenkuBoxModel> boxModelArrayList = new ArrayList<SenkuBoxModel>();
 
-        Random rand = new Random();
-        int n = rand.nextInt(3);
+        gridSelector();
+        gridCreator(boxModelArrayList);
 
-        switch (n) {
-            case 0:
-                selectedGrid = GRID_1;
-                break;
-            case 1:
-                selectedGrid = GRID_2;
-                break;
-            case 2:
-                selectedGrid = GRID_3;
-                break;
-            case 3:
-                selectedGrid = GRID_4;
-                break;
-            default:
-                break;
-        }
+        Chronometer timer = (Chronometer) findViewById(R.id.timer);
 
+        SenkuBoxAdapter boxAdapter = new SenkuBoxAdapter(this, boxModelArrayList,
+                selectedGrid, moveCounter, timer);
+        gridViewBoard.setAdapter(boxAdapter);
+    }
+
+    // reads and creates the grid with the corresponding pattern
+    private void gridCreator(ArrayList<SenkuBoxModel> boxModelArrayList) {
         gridViewBoard.setNumColumns(selectedGrid.length);
 
         for (int i = 0; i < selectedGrid.length; i++) {
@@ -131,13 +107,35 @@ public class GameSenkuActivity extends AppCompatActivity {
                 }
             }
         }
+    }
 
+    // randomly selects a grid
+    private void gridSelector() {
+        Random rand = new Random();
+        int n = rand.nextInt(3);
 
-        Chronometer timer = (Chronometer) findViewById(R.id.timer);
+        switch (n) {
+            case 0:
+                selectedGrid = GRID_1;
+                break;
+            case 1:
+                selectedGrid = GRID_2;
+                break;
+            case 2:
+                selectedGrid = GRID_3;
+                break;
+            case 3:
+                selectedGrid = GRID_4;
+                break;
+            default:
+                break;
+        }
+    }
 
-        SenkuBoxAdapter boxAdapter = new SenkuBoxAdapter(this, boxModelArrayList,
-                selectedGrid, moveCounter, timer);
-        gridViewBoard.setAdapter(boxAdapter);
-
+    private void setupFullscreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
     }
 }

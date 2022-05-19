@@ -19,7 +19,6 @@ public class SenkuBoxModel {
         this.col = col;
     }
 
-
     public boolean isSelected() {
         return isSelected;
     }
