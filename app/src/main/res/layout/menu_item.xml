@@ -8,6 +8,6 @@
     android:shadowDx="3"
     android:shadowDy="3"
     android:shadowRadius="5"
-    android:textColor="@color/black"
+    android:textColor="@color/background_table"
     android:textSize="56sp"
     />

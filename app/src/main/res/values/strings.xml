@@ -21,6 +21,8 @@
     <string name="senku_caps">SENKU</string>
     <string name="best_score">BEST SCORE</string>
     <string name="_0_moves">0 Moves</string>
+    <string name="new_game">New Game</string>
+    <string name="best_score_title">BEST</string>
 
     <string-array name="numbers">
         <item>2</item>

@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#FFFFDFD3</color>
+    <color name="background">#FFF3EFEA</color>
 
     <!--    Senku below-->
     <color name="border_color">#222222</color>
@@ -21,10 +21,11 @@
 
     <!--    2048 below-->
     <color name="number_color">#FFF9F6F2</color>
-    <color name="background_empty">#FFBBB7B2</color>
+    <color name="background_empty">#FFF3EFEA</color>
     <color name="background_score">#FF2D2E28</color>
-    <color name="background_table">#FF807265</color>
-    <color name="background_bg">#FFD1C1B2</color>
+    <color name="background_newgame">#FF807265</color>
+    <color name="background_table">#FFAE9F90</color>
+    <color name="background_bg">#FFC6BBB1</color>
     <color name="background_2">#FFEEE4DA</color>
     <color name="background_4">#FFEDE0C8</color>
     <color name="background_8">#FFF2B179</color>
