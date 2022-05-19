@@ -10,13 +10,13 @@
     app:cardUseCompatPadding="false">
 
     <ImageView
-        android:id="@+id/boxBg"
+        android:id="@+id/box_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/senku_box_bg" />
 
     <ImageView
-        android:id="@+id/boxCircle"
+        android:id="@+id/box_circle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3dp"

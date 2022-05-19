@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Splash">
         <activity
-            android:name=".settings.MainSettingsActivity"
-            android:exported="false" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:label="@string/title_activity_splash">
@@ -37,6 +34,10 @@
         <activity
             android:name=".game2048.GameOver2048Activity"
             android:label="@string/title_activity_2048_game_over" />
+        <activity
+            android:name=".settings.MainSettingsActivity"
+            android:exported="false"
+            android:label="@string/title_main_settings_activity" />
     </application>
 
 </manifest>

@@ -58,8 +58,8 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         SenkuBoxModel boxModel = getItem(position);
 
         CardView boxCard = listItemView.findViewById(R.id.boxCard);
-        ImageView boxBg = listItemView.findViewById(R.id.boxBg);
-        ImageView boxCircle = listItemView.findViewById(R.id.boxCircle);
+        ImageView boxBg = listItemView.findViewById(R.id.box_bg);
+        ImageView boxCircle = listItemView.findViewById(R.id.box_circle);
 
         dimensionAdjuster(boxModel, boxCard);
         emptyBoxChecker(boxModel, boxCircle);
@@ -68,8 +68,8 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         return listItemView;
     }
 
+    //Checking whether it should be a box and add a listener, or not
     private void boxChecker(View listItemView, SenkuBoxModel boxModel, CardView boxCard, ImageView boxBg, ImageView boxCircle) {
-        //Checking whether it should be a box (we add a listener if it is) or not
         if (boxModel.getBgId() == 1) {
             boxBg.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_bg));
 
@@ -105,7 +105,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         Animation deselect = AnimationUtils.loadAnimation(boxCircle.getContext(), R.anim.senku_deselect);
 
         if (boxModel.isPossible()) {
-            //We make the move and delete all other suggestions
+            //Make the move and delete all other suggestions
             checkDirection(boxModel);
             removePossible();
         } else if (selected && boxModel.isSelected()) {
@@ -163,6 +163,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
     }
 
     private void checkPossibles(SenkuBoxModel boxModel, String direction) {
+        // TODO: 19/05/2022 divide in other methods
         int y = 0;
         int x = 0;
 
@@ -183,18 +184,18 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
                 break;
         }
 
-        //We get the value on the grid
+        //Get the value on the grid
         int pos1 = grid[boxModel.getRow() + y][boxModel.getCol() + x];
         int pos2 = grid[boxModel.getRow() + (y * 2)][boxModel.getCol() + (x * 2)];
 
-        //We get the index and using it we get the box
+        //Get the index and use it to get the box
         int index = grid.length * (boxModel.getRow()) + (boxModel.getCol());
         int index1 = grid.length * (boxModel.getRow() + y) + (boxModel.getCol() + x);
         int index2 = grid.length * (boxModel.getRow() + (y * 2)) + (boxModel.getCol() + (x * 2));
 
-        ImageView imageView = viewGroup.getChildAt(index).findViewById(R.id.boxCircle);
-        ImageView imageView1 = viewGroup.getChildAt(index1).findViewById(R.id.boxCircle);
-        ImageView imageView2 = viewGroup.getChildAt(index2).findViewById(R.id.boxCircle);
+        ImageView imageView = viewGroup.getChildAt(index).findViewById(R.id.box_circle);
+        ImageView imageView1 = viewGroup.getChildAt(index1).findViewById(R.id.box_circle);
+        ImageView imageView2 = viewGroup.getChildAt(index2).findViewById(R.id.box_circle);
 
         SenkuBoxModel box = getItem(index);
         SenkuBoxModel box1 = getItem(index1);
@@ -202,7 +203,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
 
 
         if (pos1 == 1 && pos2 == 2) {
-            //We mark all possible moves
+            //Marks all possible moves
             if (!selected) {
                 imageView2.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_possible));
                 Animation possible = AnimationUtils.loadAnimation(imageView2.getContext(), R.anim.senku_possible);
@@ -214,7 +215,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
             }
         }
 
-        //We move the token 2 positions a remove de middle one
+        //Moving the token 2 positions and removing the middle one
         if (box2.isSelected() && box.isPossible()) {
             imageView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_token));
 
@@ -246,7 +247,6 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
             move2.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
-
                 }
 
                 @Override
@@ -257,11 +257,9 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
 
                 @Override
                 public void onAnimationRepeat(Animation animation) {
-
                 }
             });
         }
-
     }
 
     private void removePossible() {
@@ -270,7 +268,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
             cell = getItem(i);
             if (cell.isPossible()) {
                 cell.setPossible(false);
-                viewGroup.getChildAt(i).findViewById(R.id.boxCircle).setBackground(
+                viewGroup.getChildAt(i).findViewById(R.id.box_circle).setBackground(
                         ContextCompat.getDrawable(getContext(), R.drawable.senku_box_transparent));
             }
         }
@@ -294,8 +292,6 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
                             checking(i, j, -1, 0) +
                             checking(i, j, 0, 1) +
                             checking(i, j, 0, -1);
-
-
                 }
             }
         }

@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/gameOverTitle"
+            android:id="@+id/game_over_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/game_over"
@@ -32,41 +32,41 @@
             app:layout_constraintVertical_bias="0.3" />
 
         <TextView
-            android:id="@+id/scoreGameOver"
+            android:id="@+id/score_game_over"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
-            android:text="TextView"
+            android:text="@string/text_view"
             android:textColor="@color/white"
             android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gameOverTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/game_over_title" />
 
         <TextView
-            android:id="@+id/movesGameOver"
+            android:id="@+id/moves_game_over"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
-            android:text="TextView"
+            android:text="@string/text_view"
             android:textColor="@color/white"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/timeGameOver"
+            app:layout_constraintEnd_toStartOf="@id/time_game_over"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scoreGameOver" />
+            app:layout_constraintTop_toBottomOf="@+id/score_game_over" />
 
         <TextView
-            android:id="@+id/timeGameOver"
+            android:id="@+id/time_game_over"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
-            android:text="TextView"
+            android:text="@string/text_view"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/movesGameOver"
-            app:layout_constraintTop_toBottomOf="@+id/scoreGameOver" />
+            app:layout_constraintStart_toEndOf="@+id/moves_game_over"
+            app:layout_constraintTop_toBottomOf="@+id/score_game_over" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

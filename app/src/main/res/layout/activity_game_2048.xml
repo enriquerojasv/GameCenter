@@ -8,7 +8,7 @@
     tools:context=".game2048.Game2048Activity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="135dp"
         android:layout_marginTop="15dp"
@@ -23,9 +23,9 @@
             android:layout_marginEnd="2.5dp"
             android:layout_marginBottom="7dp"
             android:background="@drawable/g2048_cell_empty"
-            app:layout_constraintBottom_toTopOf="@+id/newButton"
+            app:layout_constraintBottom_toTopOf="@+id/new_button"
             app:layout_constraintEnd_toStartOf="@id/best_score"
-            app:layout_constraintStart_toStartOf="@+id/newButton"
+            app:layout_constraintStart_toStartOf="@+id/new_button"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -64,8 +64,8 @@
             android:layout_marginStart="2.5dp"
             android:layout_marginBottom="7dp"
             android:background="@drawable/g2048_cell_empty"
-            app:layout_constraintBottom_toTopOf="@+id/newButton"
-            app:layout_constraintEnd_toEndOf="@+id/newButton"
+            app:layout_constraintBottom_toTopOf="@+id/new_button"
+            app:layout_constraintEnd_toEndOf="@+id/new_button"
             app:layout_constraintStart_toEndOf="@+id/score"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -112,7 +112,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/newButton"
+            android:id="@+id/new_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
@@ -140,7 +140,7 @@
             android:text="@string/phrase_2048"
             android:textColor="@color/background_newgame"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@id/newButton"
+            app:layout_constraintEnd_toStartOf="@id/new_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_2048" />
 
@@ -149,7 +149,7 @@
 
 
     <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/Table"
+        android:id="@+id/table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -158,7 +158,7 @@
         app:columnCount="4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout"
         app:rowCount="4">
 
         <TextView
@@ -331,8 +331,8 @@
         android:text="@string/_0_moves"
         android:textColor="#807265"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/Table"
-        app:layout_constraintTop_toBottomOf="@+id/Table" />
+        app:layout_constraintStart_toStartOf="@+id/table"
+        app:layout_constraintTop_toBottomOf="@+id/table" />
 
     <Chronometer
         android:id="@+id/timer"
@@ -341,8 +341,8 @@
         android:layout_marginTop="5dp"
         android:textColor="#807265"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/Table"
-        app:layout_constraintTop_toBottomOf="@+id/Table" />
+        app:layout_constraintEnd_toEndOf="@+id/table"
+        app:layout_constraintTop_toBottomOf="@+id/table" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

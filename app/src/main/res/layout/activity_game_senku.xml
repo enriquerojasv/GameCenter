@@ -8,7 +8,7 @@
     tools:context=".senku.GameSenkuActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="135dp"
         android:layout_marginTop="15dp"
@@ -58,14 +58,14 @@
 
         <TextView
             android:id="@+id/peg"
-            android:layout_width="150dp"
+            android:layout_width="175dp"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/spacing"
             android:background="@drawable/senku_peg_bg"
             android:gravity="center"
             android:text="@string/senku_caps"
             android:textColor="@android:color/white"
-            android:textSize="40sp"
+            android:textSize="38sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -88,7 +88,7 @@
         android:verticalSpacing="@dimen/spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout" />
 
     <TextView
         android:id="@+id/move_counter"

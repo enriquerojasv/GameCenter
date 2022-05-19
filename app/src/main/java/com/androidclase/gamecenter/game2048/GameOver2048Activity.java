@@ -26,10 +26,10 @@ public class GameOver2048Activity extends AppCompatActivity {
 
         setContentView(R.layout.activity_g2048_gameover);
 
-        TextView title = findViewById(R.id.gameOverTitle);
-        TextView scoreText = findViewById(R.id.scoreGameOver);
-        TextView moveText = findViewById(R.id.movesGameOver);
-        TextView timeText = findViewById(R.id.timeGameOver);
+        TextView title = findViewById(R.id.game_over_title);
+        TextView scoreText = findViewById(R.id.score_game_over);
+        TextView moveText = findViewById(R.id.moves_game_over);
+        TextView timeText = findViewById(R.id.time_game_over);
 
         int minimumMoves = 50;
         int minimumTime = 30000;

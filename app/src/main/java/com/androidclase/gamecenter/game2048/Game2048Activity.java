@@ -50,26 +50,6 @@ public class Game2048Activity extends AppCompatActivity {
     private static int scoreValue = 0;
     private GestureDetectorCompat detector;
 
-    //Check if it has to update the best score
-    private static void bestScoreUpdater() {
-        if (scoreValue > bestScoreValue) {
-            bestScoreValue = scoreValue;
-
-            editor.putInt("best_score", scoreValue);
-            editor.commit();
-
-            bestScoreLyView.setText(String.valueOf(bestScoreValue));
-        }
-    }
-
-    //Updates current score
-    private static void scoreUpdater(String newValue) {
-        scoreValue = Integer.parseInt(scoreLyView.getText().toString()) +
-                Integer.parseInt(newValue);
-
-        scoreLyView.setText(String.valueOf(scoreValue));
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +68,26 @@ public class Game2048Activity extends AppCompatActivity {
         setupTimer();
 
         detector = new GestureDetectorCompat(this, new MyGestureListener());
+    }
+
+    //Check if it has to update the best score
+    private static void bestScoreUpdater() {
+        if (scoreValue > bestScoreValue) {
+            bestScoreValue = scoreValue;
+
+            editor.putInt("best_score", scoreValue);
+            editor.commit();
+
+            bestScoreLyView.setText(String.valueOf(bestScoreValue));
+        }
+    }
+
+    //Updates current score
+    private static void scoreUpdater(String newValue) {
+        scoreValue = Integer.parseInt(scoreLyView.getText().toString()) +
+                Integer.parseInt(newValue);
+
+        scoreLyView.setText(String.valueOf(scoreValue));
     }
 
     private void initBestScore() {
