@@ -61,23 +61,15 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         ImageView boxBg = listItemView.findViewById(R.id.boxBg);
         ImageView boxCircle = listItemView.findViewById(R.id.boxCircle);
 
-        //Checking the grid size and adjust dimensions
-        if (boxModel.getGridSize() == 8) {
-            int boxSize = (int) getContext().getResources().getDimension(R.dimen.box_size_sm);
-            boxCard.setLayoutParams(new ViewGroup.LayoutParams(boxSize, boxSize));
-        } else if (boxModel.getGridSize() == 9) {
-            int boxSize = (int) getContext().getResources().getDimension(R.dimen.box_size_sm2);
-            boxCard.setLayoutParams(new ViewGroup.LayoutParams(boxSize, boxSize));
-        }
+        dimensionAdjuster(boxModel, boxCard);
+        emptyBoxChecker(boxModel, boxCircle);
+        boxChecker(listItemView, boxModel, boxCard, boxBg, boxCircle);
 
-        //Checking whether it should be an empty box or not
-        if (boxModel.getCircleId() == 1) {
-            boxCircle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_token));
-        } else {
-            boxCircle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_transparent));
-        }
+        return listItemView;
+    }
 
-        //We check whether it should be a cell (we add a listener if it is) or not
+    private void boxChecker(View listItemView, SenkuBoxModel boxModel, CardView boxCard, ImageView boxBg, ImageView boxCircle) {
+        //Checking whether it should be a box (we add a listener if it is) or not
         if (boxModel.getBgId() == 1) {
             boxBg.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_bg));
 
@@ -86,8 +78,26 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
         } else {
             boxCard.setVisibility(View.INVISIBLE);
         }
+    }
 
-        return listItemView;
+    //Checking whether it should be an empty box or not
+    private void emptyBoxChecker(SenkuBoxModel boxModel, ImageView boxCircle) {
+        if (boxModel.getCircleId() == 1) {
+            boxCircle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_token));
+        } else {
+            boxCircle.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.senku_box_transparent));
+        }
+    }
+
+    //Checking the grid size and adjust dimensions
+    private void dimensionAdjuster(SenkuBoxModel boxModel, CardView boxCard) {
+        if (boxModel.getGridSize() == 8) {
+            int boxSize = (int) getContext().getResources().getDimension(R.dimen.box_size_sm);
+            boxCard.setLayoutParams(new ViewGroup.LayoutParams(boxSize, boxSize));
+        } else if (boxModel.getGridSize() == 9) {
+            int boxSize = (int) getContext().getResources().getDimension(R.dimen.box_size_sm2);
+            boxCard.setLayoutParams(new ViewGroup.LayoutParams(boxSize, boxSize));
+        }
     }
 
     private void checkClick(SenkuBoxModel boxModel, ImageView boxCircle) {
