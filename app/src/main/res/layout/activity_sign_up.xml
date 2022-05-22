@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_bg"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".menu.SignUpActivity">
 
@@ -10,19 +12,28 @@
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enter_user_name" />
+        android:layout_margin="@dimen/spacing_xl"
+        android:text="@string/enter_user_name"
+        android:textColor="@color/background_newgame"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_xl"
         android:autofillHints="username"
-        android:hint="@string/username" />
+        android:hint="@string/username"
+        android:maxLength="5"
+        android:textColor="@color/background_newgame"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/bt_accept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_xl"
+        android:backgroundTint="@color/background_newgame"
         android:text="@string/accept" />
 
 

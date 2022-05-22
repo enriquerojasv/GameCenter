@@ -3,6 +3,8 @@ package com.androidclase.gamecenter.menu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        setupFullscreen();
 
         etUsername = findViewById(R.id.et_username);
         Button btAccept = findViewById(R.id.bt_accept);
@@ -41,5 +44,12 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(menuIntent);
             finish();
         }
+    }
+
+    private void setupFullscreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
     }
 }

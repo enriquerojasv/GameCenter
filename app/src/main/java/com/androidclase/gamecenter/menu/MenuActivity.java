@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidclase.gamecenter.Constants;
 import com.androidclase.gamecenter.R;
 import com.androidclase.gamecenter.game2048.Game2048Activity;
 import com.androidclase.gamecenter.senku.GameSenkuActivity;
@@ -24,6 +26,10 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        TextView welcome = findViewById(R.id.tv_welcome);
+        String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
+        welcome.setText(getString(R.string.welcome_username) + " " + recoveredUsername);
 
         getSupportActionBar().hide();
 
@@ -41,30 +47,33 @@ public class MenuActivity extends AppCompatActivity {
 
                 switch (position) {
                     case GAME2048:
-                        launch2048(view);
+                        launch2048(view, recoveredUsername);
                         break;
                     case SENKU:
-                        launchSenku(view);
+                        launchSenku(view, recoveredUsername);
                         break;
                     case SETTINGS:
-                        launchSettings(view);
+                        launchSettings(view, recoveredUsername);
                 }
             }
         });
     }
 
-    public void launch2048(View v) {
+    public void launch2048(View v, String recoveredUsername) {
         Intent intent2048 = new Intent(this, Game2048Activity.class);
+        intent2048.putExtra(Constants.USERNAME, recoveredUsername);
         startActivity(intent2048);
     }
-    
-    public void launchSenku(View v) {
+
+    public void launchSenku(View v, String recoveredUsername) {
         Intent senkuIntent = new Intent(this, GameSenkuActivity.class);
+        senkuIntent.putExtra(Constants.USERNAME, recoveredUsername);
         startActivity(senkuIntent);
     }
 
-    public void launchSettings(View v) {
+    public void launchSettings(View v, String recoveredUsername) {
         Intent settingsIntent = new Intent(this, MainSettingsActivity.class);
+        settingsIntent.putExtra(Constants.USERNAME, recoveredUsername);
         startActivity(settingsIntent);
     }
 }

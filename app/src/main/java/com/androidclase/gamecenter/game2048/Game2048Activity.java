@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
+import com.androidclase.gamecenter.Constants;
 import com.androidclase.gamecenter.R;
 
 import java.util.Random;
@@ -59,6 +60,11 @@ public class Game2048Activity extends AppCompatActivity {
 
         setupFullscreen();
         setContentView(R.layout.activity_game_2048);
+
+        TextView comment2048 = findViewById(R.id.comment);
+        String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
+        comment2048.setText(recoveredUsername + "! " + getString(R.string.phrase_2048));
+
         setupSharedPreferences();
         setupAnimations();
         initScoreViews();

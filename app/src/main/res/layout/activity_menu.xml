@@ -21,20 +21,16 @@
             android:src="@drawable/logo" />
 
         <TextView
+            android:id="@+id/tv_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
-            android:text="@string/games_text"
+            android:text="@string/welcome_username"
             android:textColor="@color/background_newgame"
             android:textStyle="bold"
             android:textSize="30sp" />
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:layout_marginStart="@dimen/spacing"
-            android:src="@drawable/logo" />
+
     </LinearLayout>
 
     <ListView

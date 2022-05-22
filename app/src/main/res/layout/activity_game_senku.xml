@@ -18,9 +18,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/score"
-            android:layout_margin="@dimen/spacing"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/spacing"
             android:background="@drawable/senku_score_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,10 +76,10 @@
         android:id="@+id/grid_view_board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/senku_table_bg"
         android:layout_marginStart="@dimen/spacing"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="@dimen/spacing"
+        android:background="@drawable/senku_table_bg"
         android:gravity="center"
         android:horizontalSpacing="@dimen/spacing"
         android:numColumns="7"
@@ -112,5 +112,17 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/grid_view_board" />
+
+    <TextView
+        android:id="@+id/tv_senku_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/senku_comment"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/move_counter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

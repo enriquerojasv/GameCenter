@@ -23,7 +23,7 @@
     <string name="_0_moves">0 Moves</string>
     <string name="new_game">New Game</string>
     <string name="best_score_title">BEST</string>
-    <string name="phrase_2048">Join the numbers and get to the 2048 tile!</string>
+    <string name="phrase_2048">Join the numbers and get to the 2048 tile,</string>
     <string name="text_view">TextView</string>
     <string name="title_main_settings_activity">MainSettingsActivity</string>
 
@@ -50,6 +50,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="username">Username</string>
-    <string name="enter_user_name">Enter your user name</string>
+    <string name="enter_user_name">Enter your username</string>
     <string name="accept">Accept</string>
+    <string name="welcome_username">Welcome, </string>
+    <string name="senku_comment">Go for it!</string>
 </resources>

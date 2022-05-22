@@ -2,6 +2,7 @@
 <resources>
     <dimen name="border_width">2dp</dimen>
     <dimen name="spacing">5dp</dimen>
+    <dimen name="spacing_xl">10dp</dimen>
 
     <!--    senku below-->
     <dimen name="box_size">50dp</dimen>

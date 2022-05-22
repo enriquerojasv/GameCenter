@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidclase.gamecenter.Constants;
 import com.androidclase.gamecenter.R;
 
 import java.util.ArrayList;
@@ -69,6 +70,10 @@ public class GameSenkuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_senku);
         gridViewBoard = findViewById(R.id.grid_view_board);
         moveCounter = findViewById(R.id.move_counter);
+
+        TextView commentSenku = findViewById(R.id.tv_senku_welcome);
+        String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
+        commentSenku.setText(getString(R.string.senku_comment) + " " + recoveredUsername + "!");
 
         ArrayList<SenkuBoxModel> boxModelArrayList = new ArrayList<SenkuBoxModel>();
 
