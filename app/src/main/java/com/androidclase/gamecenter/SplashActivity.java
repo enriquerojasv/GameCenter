@@ -2,14 +2,13 @@ package com.androidclase.gamecenter;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.androidclase.gamecenter.menu.MenuActivity;
+import com.androidclase.gamecenter.menu.SignUpActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -46,9 +45,10 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent menu = new Intent(SplashActivity.this, MenuActivity.class);
-                startActivity(menu);
+                Intent signUp = new Intent(SplashActivity.this, SignUpActivity.class);
+                startActivity(signUp);
                 overridePendingTransition(0, R.anim.splash_fade_out);
+                finish();
             }
 
             @Override
