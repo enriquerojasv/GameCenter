@@ -53,18 +53,6 @@ public class GameOver2048Activity extends AppCompatActivity {
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(ms))
         ));
 
-
-        /*
-        ANOTHER WAY OF DOING A POPUP
-
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        getWindow().setLayout((int) (width * 0.95), (int) (height * 0.9));
-        */
-
         getWindow().setBackgroundDrawableResource(R.drawable.g2048_transparent_bg);
     }
 }

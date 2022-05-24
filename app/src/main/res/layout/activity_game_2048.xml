@@ -118,7 +118,7 @@
             android:layout_marginHorizontal="5dp"
             android:background="@drawable/g2048_newgame"
             android:gravity="center"
-            android:onClick="new_game"
+            android:onClick="newGame"
             android:paddingHorizontal="36dp"
             android:paddingVertical="13dp"
             android:text="@string/new_game"

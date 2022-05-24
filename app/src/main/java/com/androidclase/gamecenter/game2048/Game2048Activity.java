@@ -355,7 +355,7 @@ public class Game2048Activity extends AppCompatActivity {
         }
     }
 
-    public void new_game(View v) {
+    public void newGame(View v) {
         timer.setBase(SystemClock.elapsedRealtime());
         timer.stop();
         timer.start();

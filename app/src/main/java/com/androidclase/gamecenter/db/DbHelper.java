@@ -12,7 +12,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_FORMAT = "CREATE TABLE " + TABLE_SCORES + "(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "user TEXT NOT NULL," +
-            "score INTEGER)";
+            "game TEXT NOT NULL," +
+            "score TEXT NOT NULL)";
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "scores.db";
 
