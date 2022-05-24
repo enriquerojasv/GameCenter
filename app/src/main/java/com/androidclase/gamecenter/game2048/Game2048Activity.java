@@ -1,5 +1,10 @@
 package com.androidclase.gamecenter.game2048;
 
+import static com.androidclase.gamecenter.Constants.BOARD_CELLS;
+import static com.androidclase.gamecenter.Constants.BOARD_SIZE;
+import static com.androidclase.gamecenter.Constants.CELL_BG;
+import static com.androidclase.gamecenter.Constants.CELL_VALUES;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,16 +30,7 @@ import java.util.Random;
 
 public class Game2048Activity extends AppCompatActivity {
 
-    public static final int BOARD_SIZE = 4;
-    public static final int[] CELL_BG = {R.drawable.g2048_cell_empty, R.drawable.g2048_cell_2,
-            R.drawable.g2048_cell_4, R.drawable.g2048_cell_8, R.drawable.g2048_cell_16,
-            R.drawable.g2048_cell_32, R.drawable.g2048_cell_64, R.drawable.g2048_cell_128,
-            R.drawable.g2048_cell_256, R.drawable.g2048_cell_512, R.drawable.g2048_cell_1024,
-            R.drawable.g2048_cell_2048};
-    public static final TextView[][] BOARD_CELLS = new TextView[BOARD_SIZE][BOARD_SIZE];
-    public static final String[] CELL_VALUES = {"", "2", "4", "8", "16", "32", "64",
-            "128", "256", "512", "1024", "2048"};
-    public static final int STARTING_CELLS = 2;
+
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
     private static TextView moveLyView;
@@ -70,7 +66,7 @@ public class Game2048Activity extends AppCompatActivity {
         initScoreViews();
         initBestScore();
         createUI();
-        generateCell(STARTING_CELLS);
+        generateCell(Constants.STARTING_CELLS);
         setupTimer();
 
         detector = new GestureDetectorCompat(this, new MyGestureListener());

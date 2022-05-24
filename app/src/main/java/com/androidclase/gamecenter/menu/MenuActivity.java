@@ -1,5 +1,9 @@
 package com.androidclase.gamecenter.menu;
 
+import static com.androidclase.gamecenter.Constants.OPT_GAME2048;
+import static com.androidclase.gamecenter.Constants.OPT_SENKU;
+import static com.androidclase.gamecenter.Constants.OPT_SETTINGS;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,10 +23,6 @@ import com.androidclase.gamecenter.senku.GameSenkuActivity;
 import com.androidclase.gamecenter.settings.MainSettingsActivity;
 
 public class MenuActivity extends AppCompatActivity {
-
-    final int GAME2048 = 0;
-    final int SENKU = 1;
-    final int SETTINGS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +50,13 @@ public class MenuActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                 switch (position) {
-                    case GAME2048:
+                    case OPT_GAME2048:
                         launch2048(view, recoveredUsername);
                         break;
-                    case SENKU:
+                    case OPT_SENKU:
                         launchSenku(view, recoveredUsername);
                         break;
-                    case SETTINGS:
+                    case OPT_SETTINGS:
                         launchSettings(view, recoveredUsername);
                 }
             }

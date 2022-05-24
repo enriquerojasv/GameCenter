@@ -1,5 +1,9 @@
 package com.androidclase.gamecenter.senku;
 
+import static com.androidclase.gamecenter.Constants.GRID_2;
+import static com.androidclase.gamecenter.Constants.GRID_3;
+import static com.androidclase.gamecenter.Constants.GRID_4;
+
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,49 +21,9 @@ import java.util.Random;
 
 public class GameSenkuActivity extends AppCompatActivity {
 
-    public static final int[][] GRID_1 = {
-            {0, 0, 2, 2, 2, 0, 0},
-            {0, 0, 2, 1, 2, 0, 0},
-            {2, 2, 2, 1, 2, 2, 2},
-            {2, 1, 1, 1, 1, 1, 2},
-            {2, 2, 2, 1, 2, 2, 2},
-            {0, 0, 2, 1, 2, 0, 0},
-            {0, 0, 2, 2, 2, 0, 0}
-    };
-    public static final int[][] GRID_2 = {
-            {0, 0, 2, 1, 1, 0, 0},
-            {0, 1, 1, 1, 1, 1, 0},
-            {1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1},
-            {0, 1, 1, 1, 1, 1, 0},
-            {0, 0, 1, 1, 1, 0, 0}
-    };
-    public static final int[][] GRID_3 = {
-            {0, 0, 1, 1, 1, 0, 0, 0},
-            {0, 0, 1, 1, 1, 0, 0, 0},
-            {0, 0, 1, 1, 1, 0, 0, 0},
-            {1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 2, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1},
-            {0, 0, 1, 1, 1, 0, 0, 0},
-            {0, 0, 1, 1, 1, 0, 0, 0}
-    };
-    public static final int[][] GRID_4 = {
-            {0, 0, 0, 1, 1, 1, 0, 0, 0},
-            {0, 0, 0, 1, 1, 1, 0, 0, 0},
-            {0, 0, 0, 1, 1, 1, 0, 0, 0},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 2, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {0, 0, 0, 1, 1, 1, 0, 0, 0},
-            {0, 0, 0, 1, 1, 1, 0, 0, 0},
-            {0, 0, 0, 1, 1, 1, 0, 0, 0}
-    };
-
     private GridView gridViewBoard;
     private TextView moveCounter;
-    private int[][] selectedGrid = GRID_1;
+    private int[][] selectedGrid = Constants.GRID_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +85,7 @@ public class GameSenkuActivity extends AppCompatActivity {
 
         switch (n) {
             case 0:
-                selectedGrid = GRID_1;
+                selectedGrid = Constants.GRID_1;
                 break;
             case 1:
                 selectedGrid = GRID_2;
