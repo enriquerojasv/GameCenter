@@ -15,9 +15,8 @@ public class MainSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_settings);
-
         setupFullscreen();
+        setContentView(R.layout.activity_main_settings);
 
         TextView commentSettings = findViewById(R.id.tv_settings_welcome);
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);

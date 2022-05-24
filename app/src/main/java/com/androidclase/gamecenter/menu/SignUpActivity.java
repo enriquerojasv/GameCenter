@@ -21,9 +21,8 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
-
         setupFullscreen();
+        setContentView(R.layout.activity_sign_up);
 
         etUsername = findViewById(R.id.et_username);
         Button btAccept = findViewById(R.id.bt_accept);

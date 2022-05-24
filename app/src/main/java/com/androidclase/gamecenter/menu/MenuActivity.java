@@ -3,6 +3,8 @@ package com.androidclase.gamecenter.menu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -25,11 +27,13 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setupFullscreen();
         setContentView(R.layout.activity_menu);
 
         TextView welcome = findViewById(R.id.tv_welcome);
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
-        welcome.setText(getString(R.string.welcome_username) + " " + recoveredUsername);
+        welcome.setText(getString(R.string.welcome_username) + " " + recoveredUsername + "!");
 
         getSupportActionBar().hide();
 
@@ -75,5 +79,12 @@ public class MenuActivity extends AppCompatActivity {
         Intent settingsIntent = new Intent(this, MainSettingsActivity.class);
         settingsIntent.putExtra(Constants.USERNAME, recoveredUsername);
         startActivity(settingsIntent);
+    }
+
+    private void setupFullscreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
     }
 }
