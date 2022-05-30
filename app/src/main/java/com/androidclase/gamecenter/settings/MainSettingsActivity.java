@@ -6,11 +6,19 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidclase.gamecenter.Constants;
 import com.androidclase.gamecenter.R;
+import com.androidclase.gamecenter.db.DbScores;
+
+import java.util.ArrayList;
 
 public class MainSettingsActivity extends AppCompatActivity {
+
+    private RecyclerView scoresList;
+    private ArrayList<Scores> scoresArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +30,12 @@ public class MainSettingsActivity extends AppCompatActivity {
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
         commentSettings.setText(getString(R.string.welcome_username) + " " + recoveredUsername + "!");
 
+        scoresList = findViewById(R.id.scores_list);
+        scoresList.setLayoutManager(new LinearLayoutManager(this));
+
+        DbScores dbScores = new DbScores(MainSettingsActivity.this);
+
+        scoresArrayList = new ArrayList<>();
 
     }
 
