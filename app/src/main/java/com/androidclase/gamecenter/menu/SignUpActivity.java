@@ -13,10 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidclase.gamecenter.Constants;
 import com.androidclase.gamecenter.R;
+import com.androidclase.gamecenter.db.DbHelper;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText etUsername;
+    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +29,9 @@ public class SignUpActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.et_username);
         Button btAccept = findViewById(R.id.bt_accept);
 
+        dbHelper = new DbHelper(this);
 
         btAccept.setOnClickListener(view -> onButtonAcceptClick(view));
-
-
     }
 
     private void onButtonAcceptClick(View view) {

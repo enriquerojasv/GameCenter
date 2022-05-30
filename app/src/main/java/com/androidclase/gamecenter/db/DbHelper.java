@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_SCORES = "t_scores";
-    public static final String TABLE_FORMAT = "CREATE TABLE " + TABLE_SCORES + "(" +
+    public static final String TABLE_FORMAT = "CREATE TABLE IF NOT EXISTS " + TABLE_SCORES + "(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "user TEXT NOT NULL," +
             "game TEXT NOT NULL," +
@@ -30,7 +30,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_SCORES);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORES);
         onCreate(sqLiteDatabase);
 
     }
