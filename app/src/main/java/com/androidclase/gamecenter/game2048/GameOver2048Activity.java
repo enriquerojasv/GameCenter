@@ -44,9 +44,9 @@ public class GameOver2048Activity extends AppCompatActivity {
         if (score == 0) {
             score = ((minimumTime / ms) * (minimumMoves / moves)) * 100;
         }
-        int final_score = (int) (score * bonus);
+        int finalScore = (int) (score * bonus);
 
-        scoreText.setText("SCORE: " + final_score);
+        scoreText.setText("SCORE: " + finalScore);
         moveText.setText("MOVES: " + moves);
         title.setText(getIntent().getExtras().getString("title"));
         timeText.setText(String.format(Locale.ENGLISH, "TIME: %02d:%02d",
@@ -59,7 +59,7 @@ public class GameOver2048Activity extends AppCompatActivity {
 
         //writing db
         DbScores dbScores = new DbScores(GameOver2048Activity.this);
-        long id = dbScores.insertScore(recoveredUsername, thisGame, final_score);
+        long id = dbScores.insertScore(recoveredUsername, thisGame, finalScore);
 
         if (id > 0) {
             Toast.makeText(GameOver2048Activity.this, "Score saved", Toast.LENGTH_SHORT).show();

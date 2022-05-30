@@ -36,9 +36,9 @@ public class SenkuGameOverActivity extends AppCompatActivity {
         double bonus = getIntent().getExtras().getDouble("bonus");
         long ms = getIntent().getExtras().getLong("ms");
 
-        int final_score = (int) (moves * bonus) * 10;
+        int finalScore = (int) ((int) (moves * 10) * bonus);
 
-        scoreText.setText("SCORE: " + final_score);
+        scoreText.setText("SCORE: " + finalScore);
         moveText.setText("MOVES: " + moves);
         title.setText(getIntent().getExtras().getString("title"));
         timeText.setText(String.format(Locale.ENGLISH, "TIME: %02d:%02d",
@@ -51,7 +51,7 @@ public class SenkuGameOverActivity extends AppCompatActivity {
 
         //writing db
         DbScores dbScores = new DbScores(SenkuGameOverActivity.this);
-        long id = dbScores.insertScore(recoveredUsername, thisGame, final_score);
+        long id = dbScores.insertScore(recoveredUsername, thisGame, finalScore);
 
         if (id > 0) {
             Toast.makeText(SenkuGameOverActivity.this, "Score saved", Toast.LENGTH_SHORT).show();
