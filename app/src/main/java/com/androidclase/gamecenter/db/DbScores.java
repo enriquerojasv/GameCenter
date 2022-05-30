@@ -54,7 +54,7 @@ public class DbScores extends DbHelper {
                 score.setId(scoresCursor.getInt(0));
                 score.setUser(scoresCursor.getString(1));
                 score.setGame(scoresCursor.getString(2));
-                score.setScore(scoresCursor.getInt(3));
+                score.setScore(scoresCursor.getString(3));
                 scoresList.add(score);
             } while (scoresCursor.moveToNext());
         }

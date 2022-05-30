@@ -37,6 +37,8 @@ public class MainSettingsActivity extends AppCompatActivity {
 
         scoresArrayList = new ArrayList<>();
 
+        ScoresListAdapter adapter = new ScoresListAdapter(dbScores.showScores());
+        scoresList.setAdapter(adapter);
     }
 
 

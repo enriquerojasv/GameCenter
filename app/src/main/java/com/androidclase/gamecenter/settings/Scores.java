@@ -5,7 +5,7 @@ public class Scores {
     private int id;
     private String user;
     private String game;
-    private int score;
+    private String score;
 
     public int getId() {
         return id;
@@ -31,11 +31,11 @@ public class Scores {
         this.game = game;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 }
