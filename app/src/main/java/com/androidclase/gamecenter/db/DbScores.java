@@ -2,9 +2,14 @@ package com.androidclase.gamecenter.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
+
+import com.androidclase.gamecenter.settings.Scores;
+
+import java.util.ArrayList;
 
 public class DbScores extends DbHelper {
 
@@ -32,5 +37,30 @@ public class DbScores extends DbHelper {
             e.toString();
         }
         return id;
+    }
+
+    public ArrayList<Scores> showScores() {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Scores> scoresList = new ArrayList<>();
+        Scores score = null;
+        Cursor scoresCursor = null;
+
+        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES, null);
+        if (scoresCursor.moveToFirst()) {
+            do {
+                score = new Scores();
+                score.setId(scoresCursor.getInt(0));
+                score.setUser(scoresCursor.getString(1));
+                score.setGame(scoresCursor.getString(2));
+                score.setScore(scoresCursor.getInt(3));
+                scoresList.add(score);
+            } while (scoresCursor.moveToNext());
+        }
+
+        scoresCursor.close();
+
+        return scoresList;
     }
 }
