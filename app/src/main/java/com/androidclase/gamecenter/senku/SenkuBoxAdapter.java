@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.androidclase.gamecenter.Constants;
 import com.androidclase.gamecenter.R;
 
 import java.util.ArrayList;
@@ -30,12 +31,14 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
     private TextView moveCounter;
     private int moves = 0;
     private Chronometer timer;
+    private String username;
 
     public SenkuBoxAdapter(@NonNull Context context, ArrayList<SenkuBoxModel> cellModelArrayList,
-                           int[][] selectedGrid, TextView move_count, Chronometer time) {
+                           int[][] selectedGrid, TextView move_count, Chronometer time, String recoveredUsername) {
         super(context, 0, cellModelArrayList);
         this.context = context;
 
+        username = recoveredUsername;
         grid = selectedGrid;
         moveCounter = move_count;
         timer = time;
@@ -280,7 +283,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
     }
 
     private void checkWin() {
-        int possible_moves = 0;
+        int possibleMoves = 0;
         int ones = 0;
 
         for (int i = 0; i < grid.length; i++) {
@@ -288,7 +291,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
                 if (grid[i][j] == 1) ones++;
                 if (i - 2 >= 0 && j - 2 >= 0 &&
                         i + 2 < grid.length && j + 2 < grid.length) {
-                    possible_moves += checking(i, j, 1, 0) +
+                    possibleMoves += checking(i, j, 1, 0) +
                             checking(i, j, -1, 0) +
                             checking(i, j, 0, 1) +
                             checking(i, j, 0, -1);
@@ -296,7 +299,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
             }
         }
 
-        if (possible_moves == 0) {
+        if (possibleMoves == 0) {
             Intent intent = new Intent(getContext(), SenkuGameOverActivity.class);
 
             if (ones == 1) {
@@ -307,6 +310,7 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
                 intent.putExtra("bonus", 1.0);
             }
 
+            intent.putExtra(Constants.USERNAME, username);
             intent.putExtra("moves", moves);
 
             long elapsedMillis = SystemClock.elapsedRealtime() - timer.getBase();

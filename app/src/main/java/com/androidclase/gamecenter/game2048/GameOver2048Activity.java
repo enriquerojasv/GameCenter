@@ -24,13 +24,9 @@ public class GameOver2048Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        setupFullscreen();
 
         setContentView(R.layout.activity_g2048_gameover);
-
         TextView title = findViewById(R.id.game_over_title);
         TextView scoreText = findViewById(R.id.score_game_over);
         TextView moveText = findViewById(R.id.moves_game_over);
@@ -66,9 +62,16 @@ public class GameOver2048Activity extends AppCompatActivity {
         long id = dbScores.insertScore(recoveredUsername, thisGame, final_score);
 
         if (id > 0) {
-            Toast.makeText(GameOver2048Activity.this, "GUARDADO", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameOver2048Activity.this, "Score saved", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(GameOver2048Activity.this, "ERROR GUARDADO", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameOver2048Activity.this, "Error. Score not saved", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setupFullscreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
     }
 }

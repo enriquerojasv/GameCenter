@@ -47,7 +47,7 @@ public class GameSenkuActivity extends AppCompatActivity {
         Chronometer timer = (Chronometer) findViewById(R.id.timer);
 
         SenkuBoxAdapter boxAdapter = new SenkuBoxAdapter(this, boxModelArrayList,
-                selectedGrid, moveCounter, timer);
+                selectedGrid, moveCounter, timer, recoveredUsername);
         gridViewBoard.setAdapter(boxAdapter);
     }
 
