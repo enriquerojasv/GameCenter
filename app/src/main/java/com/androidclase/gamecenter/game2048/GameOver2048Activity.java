@@ -5,15 +5,20 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidclase.gamecenter.Constants;
 import com.androidclase.gamecenter.R;
+import com.androidclase.gamecenter.db.DbScores;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class GameOver2048Activity extends AppCompatActivity {
+
+    private String thisGame = "2048";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class GameOver2048Activity extends AppCompatActivity {
         int minimumMoves = 50;
         int minimumTime = 30000;
 
+        String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
         long score = getIntent().getExtras().getInt("score");
         int moves = getIntent().getExtras().getInt("moves");
         double bonus = getIntent().getExtras().getDouble("bonus");
@@ -54,5 +60,15 @@ public class GameOver2048Activity extends AppCompatActivity {
         ));
 
         getWindow().setBackgroundDrawableResource(R.drawable.g2048_transparent_bg);
+
+        //writing db
+        DbScores dbScores = new DbScores(GameOver2048Activity.this);
+        long id = dbScores.insertScore(recoveredUsername, thisGame, final_score);
+
+        if (id > 0) {
+            Toast.makeText(GameOver2048Activity.this, "GUARDADO", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(GameOver2048Activity.this, "ERROR GUARDADO", Toast.LENGTH_SHORT).show();
+        }
     }
 }

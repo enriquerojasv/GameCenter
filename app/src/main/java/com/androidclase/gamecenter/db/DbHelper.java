@@ -13,12 +13,14 @@ public class DbHelper extends SQLiteOpenHelper {
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "user TEXT NOT NULL," +
             "game TEXT NOT NULL," +
-            "score TEXT NOT NULL)";
+            "score INTEGER NOT NULL)";
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "scores.db";
+    SQLiteDatabase dataBase;
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+        dataBase = getWritableDatabase();
     }
 
     @Override

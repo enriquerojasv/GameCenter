@@ -7,6 +7,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +30,11 @@ public class MainSettingsActivity extends AppCompatActivity {
         etGame = findViewById(R.id.et_game);
         etScore = findViewById(R.id.et_score);
         btSave = findViewById(R.id.bt_save);
+
         TextView commentSettings = findViewById(R.id.tv_settings_welcome);
+        System.out.println(etScore.getText().toString());
+        int etScoreNum = Integer.valueOf(etScore.getText().toString());
+        System.out.println(etScore.getText().toString());
 
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
         commentSettings.setText(getString(R.string.welcome_username) + " " + recoveredUsername + "!");
@@ -38,9 +43,22 @@ public class MainSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DbScores dbScores = new DbScores(MainSettingsActivity.this);
-                dbScores.insertScore(etUser.getText().toString(), etGame.getText().toString(), etScore.getText().toString());
+                long id = dbScores.insertScore(etUser.getText().toString(), etGame.getText().toString(), etScoreNum);
+
+                if (id > 0) {
+                    Toast.makeText(MainSettingsActivity.this, "GUARDADO", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainSettingsActivity.this, "ERROR GUARDADO", Toast.LENGTH_SHORT).show();
+                }
+                limpiar();
             }
         });
+    }
+
+    private void limpiar() {
+        etUser.setText("");
+        etGame.setText("");
+        etScore.setText("");
     }
 
     private void setupFullscreen() {

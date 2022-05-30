@@ -46,30 +46,30 @@ public class Game2048Activity extends AppCompatActivity {
     private static Animation spawn;
     private static int scoreValue = 0;
     private GestureDetectorCompat detector;
+    private static String recoveredUsername;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private static void winCheck(int movesTotal, boolean win) {
 
-        // TODO: 18/05/2022 remove context variable
-        context = this;
+        if (movesTotal == 0 || win) {
+            Intent intent = new Intent(context, GameOver2048Activity.class);
 
-        setupFullscreen();
-        setContentView(R.layout.activity_game_2048);
+            if (movesTotal == 0) {
+                intent.putExtra("title", "YOU LOSE");
+                intent.putExtra("bonus", 1.0);
+            } else {
+                intent.putExtra("title", "YOU WIN");
+                intent.putExtra("bonus", 1.5);
+            }
 
-        TextView comment2048 = findViewById(R.id.comment);
-        String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
-        comment2048.setText(recoveredUsername + "! " + getString(R.string.phrase_2048));
+            intent.putExtra(Constants.USERNAME, recoveredUsername);
+            intent.putExtra("score", scoreValue);
+            intent.putExtra("moves", movesValue);
 
-        setupSharedPreferences();
-        setupAnimations();
-        initScoreViews();
-        initBestScore();
-        createUI();
-        generateCell(Constants.STARTING_CELLS);
-        setupTimer();
+            long elapsedMillis = SystemClock.elapsedRealtime() - timer.getBase();
+            intent.putExtra("ms", elapsedMillis);
 
-        detector = new GestureDetectorCompat(this, new MyGestureListener());
+            context.startActivity(intent);
+        }
     }
 
     //Check if it has to update the best score
@@ -199,27 +199,29 @@ public class Game2048Activity extends AppCompatActivity {
         winCheck(movesTotal, false);
     }
 
-    private static void winCheck(int movesTotal, boolean win) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        if (movesTotal == 0 || win) {
-            Intent intent = new Intent(context, GameOver2048Activity.class);
+        // TODO: 18/05/2022 remove context variable
+        context = this;
 
-            if (movesTotal == 0) {
-                intent.putExtra("title", "YOU LOSE");
-                intent.putExtra("bonus", 1.0);
-            } else {
-                intent.putExtra("title", "YOU WIN");
-                intent.putExtra("bonus", 1.5);
-            }
+        setupFullscreen();
+        setContentView(R.layout.activity_game_2048);
 
-            intent.putExtra("score", scoreValue);
-            intent.putExtra("moves", movesValue);
+        TextView comment2048 = findViewById(R.id.comment);
+        recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
+        comment2048.setText(recoveredUsername + "! " + getString(R.string.phrase_2048));
 
-            long elapsedMillis = SystemClock.elapsedRealtime() - timer.getBase();
-            intent.putExtra("ms", elapsedMillis);
+        setupSharedPreferences();
+        setupAnimations();
+        initScoreViews();
+        initBestScore();
+        createUI();
+        generateCell(Constants.STARTING_CELLS);
+        setupTimer();
 
-            context.startActivity(intent);
-        }
+        detector = new GestureDetectorCompat(this, new MyGestureListener());
     }
 
     //fills a new cell if possible

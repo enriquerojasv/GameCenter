@@ -15,16 +15,22 @@ public class DbScores extends DbHelper {
         this.context = context;
     }
 
-    public long insertScore(String user, String game, String score) {
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+    public long insertScore(String user, String game, int score) {
+        long id = 0;
 
-        ContentValues values = new ContentValues();
-        values.put("user", user);
-        values.put("game", game);
-        values.put("score", score);
+        try {
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        long id = db.insert(TABLE_SCORES, null, values);
+            ContentValues values = new ContentValues();
+            values.put("user", user);
+            values.put("game", game);
+            values.put("score", score);
+
+            id = db.insert(TABLE_SCORES, null, values);
+        } catch (Exception e) {
+            e.toString();
+        }
         return id;
     }
 }
