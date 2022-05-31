@@ -63,4 +63,54 @@ public class DbScores extends DbHelper {
 
         return scoresList;
     }
+
+    public ArrayList<Scores> showScoresSenku() {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Scores> scoresList = new ArrayList<>();
+        Scores score = null;
+        Cursor scoresCursor = null;
+
+        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES + " WHERE " + TABLE_GAME + "= 'Senku'", null);
+        if (scoresCursor.moveToFirst()) {
+            do {
+                score = new Scores();
+                score.setId(scoresCursor.getInt(0));
+                score.setUser(scoresCursor.getString(1));
+                score.setGame(scoresCursor.getString(2));
+                score.setScore(scoresCursor.getString(3));
+                scoresList.add(score);
+            } while (scoresCursor.moveToNext());
+        }
+
+        scoresCursor.close();
+
+        return scoresList;
+    }
+
+    public ArrayList<Scores> showScores2048() {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Scores> scoresList = new ArrayList<>();
+        Scores score = null;
+        Cursor scoresCursor = null;
+
+        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES + " WHERE " + TABLE_GAME + "= '2048'", null);
+        if (scoresCursor.moveToFirst()) {
+            do {
+                score = new Scores();
+                score.setId(scoresCursor.getInt(0));
+                score.setUser(scoresCursor.getString(1));
+                score.setGame(scoresCursor.getString(2));
+                score.setScore(scoresCursor.getString(3));
+                scoresList.add(score);
+            } while (scoresCursor.moveToNext());
+        }
+
+        scoresCursor.close();
+
+        return scoresList;
+    }
 }

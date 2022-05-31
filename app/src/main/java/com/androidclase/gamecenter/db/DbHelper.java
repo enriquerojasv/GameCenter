@@ -9,11 +9,14 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_SCORES = "t_scores";
+    public static final String TABLE_USER = "user";
+    public static final String TABLE_GAME = "game";
+    public static final String TABLE_SCORE_COLUMN = "score";
     public static final String TABLE_FORMAT = "CREATE TABLE IF NOT EXISTS " + TABLE_SCORES + "(" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "user TEXT NOT NULL," +
-            "game TEXT NOT NULL," +
-            "score INTEGER NOT NULL)";
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," + TABLE_USER +
+            " TEXT NOT NULL," + TABLE_GAME +
+            " TEXT NOT NULL," + TABLE_SCORE_COLUMN +
+            " INTEGER NOT NULL)";
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "scores.db";
     SQLiteDatabase dataBase;

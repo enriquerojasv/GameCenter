@@ -3,6 +3,8 @@ package com.androidclase.gamecenter.settings;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,9 @@ public class MainSettingsActivity extends AppCompatActivity {
 
     private RecyclerView scoresList;
     private ArrayList<Scores> scoresArrayList;
+    private CheckBox ch2048;
+    private CheckBox chSenku;
+    private Spinner sortSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,10 @@ public class MainSettingsActivity extends AppCompatActivity {
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
         commentSettings.setText(getString(R.string.welcome_username) + " " + recoveredUsername + "!");
 
+        ch2048 = findViewById(R.id.ch_2048);
+        chSenku = findViewById(R.id.ch_senku);
+        sortSpinner = findViewById(R.id.sort_spinner);
+
 
         scoresList = findViewById(R.id.scores_list);
         scoresList.setLayoutManager(new LinearLayoutManager(this));
@@ -38,7 +47,7 @@ public class MainSettingsActivity extends AppCompatActivity {
 
         scoresArrayList = new ArrayList<>();
 
-        ScoresListAdapter adapter = new ScoresListAdapter(dbScores.showScores());
+        ScoresListAdapter adapter = new ScoresListAdapter(dbScores.showScores2048());
         scoresList.setAdapter(adapter);
 
         // TODO: 31/05/2022 change color of gameText depending on game 

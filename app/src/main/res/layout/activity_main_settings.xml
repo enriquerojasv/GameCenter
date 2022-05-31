@@ -22,9 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/ch_2048"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_xl"
@@ -34,7 +33,7 @@
             android:textStyle="bold" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/ch_senku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,7 +42,7 @@
             android:textStyle="bold" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/sort_spinner"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/spacing_xl"
