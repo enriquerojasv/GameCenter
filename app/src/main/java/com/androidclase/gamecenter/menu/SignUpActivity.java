@@ -27,7 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         etUsername = findViewById(R.id.et_username);
-        Button btAccept = findViewById(R.id.bt_accept);
+        Button btAccept = findViewById(R.id.bt_show);
 
         dbHelper = new DbHelper(this);
 

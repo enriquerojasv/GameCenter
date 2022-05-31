@@ -39,7 +39,7 @@ public class DbScores extends DbHelper {
         return id;
     }
 
-    public ArrayList<Scores> showScores() {
+    public ArrayList<Scores> showScores(String sortType) {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -47,7 +47,8 @@ public class DbScores extends DbHelper {
         Scores score = null;
         Cursor scoresCursor = null;
 
-        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES, null);
+        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES + " ORDER BY " +
+                TABLE_SCORE_COLUMN + " " + sortType + " ", null);
         if (scoresCursor.moveToFirst()) {
             do {
                 score = new Scores();
@@ -64,7 +65,7 @@ public class DbScores extends DbHelper {
         return scoresList;
     }
 
-    public ArrayList<Scores> showScoresSenku() {
+    public ArrayList<Scores> showScoresSenku(String sortType) {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -72,7 +73,8 @@ public class DbScores extends DbHelper {
         Scores score = null;
         Cursor scoresCursor = null;
 
-        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES + " WHERE " + TABLE_GAME + "= 'Senku'", null);
+        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES + " WHERE " + TABLE_GAME +
+                "= 'Senku'" + " ORDER BY " + TABLE_SCORE_COLUMN + " " + sortType + " ", null);
         if (scoresCursor.moveToFirst()) {
             do {
                 score = new Scores();
@@ -89,7 +91,7 @@ public class DbScores extends DbHelper {
         return scoresList;
     }
 
-    public ArrayList<Scores> showScores2048() {
+    public ArrayList<Scores> showScores2048(String sortType) {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -97,7 +99,8 @@ public class DbScores extends DbHelper {
         Scores score = null;
         Cursor scoresCursor = null;
 
-        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES + " WHERE " + TABLE_GAME + "= '2048'", null);
+        scoresCursor = db.rawQuery("SELECT * FROM " + TABLE_SCORES + " WHERE " + TABLE_GAME +
+                "= '2048'" + " ORDER BY " + TABLE_SCORE_COLUMN + " " + sortType + " ", null);
         if (scoresCursor.moveToFirst()) {
             do {
                 score = new Scores();

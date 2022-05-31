@@ -64,6 +64,7 @@
                 android:layout_weight="1"
                 android:onClick="onSelectGameClicked"
                 android:text="@string/both"
+                android:checked="true"
                 android:textColor="@color/background_newgame"
                 android:textStyle="bold" />
 
@@ -71,12 +72,7 @@
         </RadioGroup>
 
 
-        <Spinner
-            android:id="@+id/sort_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/spacing_xl"
-            android:layout_weight="2" />
+
 
     </LinearLayout>
 
@@ -102,8 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_xl"
-                android:layout_weight="1"
-                android:onClick="onSelectGameClicked"
+                android:onClick="onSortTypeClicked"
                 android:text="@string/asc"
                 android:textColor="@color/background_newgame"
                 android:textStyle="bold" />
@@ -112,15 +107,23 @@
                 android:id="@+id/rb_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onSelectGameClicked"
+                android:checked="true"
                 android:text="@string/desc"
+                android:onClick="onSortTypeClicked"
                 android:textColor="@color/background_newgame"
                 android:textStyle="bold" />
 
         </RadioGroup>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/spacing_xl"
+        android:onClick="onBtShowClick" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scores_list"

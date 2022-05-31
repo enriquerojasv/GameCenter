@@ -5,6 +5,11 @@ import android.widget.TextView;
 public class Constants {
 
     public static final String USERNAME = "username";
+    public static final String NAME_SENKU = "SENKU";
+    public static final String NAME_2048 = "2048";
+    public static final String NAME_BOTH = "BOTH";
+    public static final String NAME_ASC = "ASC";
+    public static final String NAME_DESC = "DESC";
     public static final int BOARD_SIZE = 4;
     public static final int[] CELL_BG = {R.drawable.g2048_cell_empty, R.drawable.g2048_cell_2,
             R.drawable.g2048_cell_4, R.drawable.g2048_cell_8, R.drawable.g2048_cell_16,
