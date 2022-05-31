@@ -1,9 +1,11 @@
 package com.androidclase.gamecenter.settings;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -21,8 +23,9 @@ public class MainSettingsActivity extends AppCompatActivity {
 
     private RecyclerView scoresList;
     private ArrayList<Scores> scoresArrayList;
-    private CheckBox ch2048;
-    private CheckBox chSenku;
+    private RadioButton rb2048;
+    private RadioButton rbSenku;
+    private RadioButton rbBoth;
     private Spinner sortSpinner;
 
     @Override
@@ -35,28 +38,17 @@ public class MainSettingsActivity extends AppCompatActivity {
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
         commentSettings.setText(getString(R.string.welcome_username) + " " + recoveredUsername + "!");
 
-        ch2048 = findViewById(R.id.ch_2048);
-        chSenku = findViewById(R.id.ch_senku);
+        RadioGroup rgSelectionGame = findViewById(R.id.rg_selection_game);
+        rb2048 = findViewById(R.id.rb_2048);
+        rbSenku = findViewById(R.id.rb_senku);
+        rbBoth = findViewById(R.id.rb_both);
         sortSpinner = findViewById(R.id.sort_spinner);
 
 
         scoresList = findViewById(R.id.scores_list);
         scoresList.setLayoutManager(new LinearLayoutManager(this));
 
-        DbScores dbScores = new DbScores(MainSettingsActivity.this);
 
-        scoresArrayList = new ArrayList<>();
-
-        ScoresListAdapter adapter = new ScoresListAdapter(dbScores.showScores2048());
-        scoresList.setAdapter(adapter);
-
-        // TODO: 31/05/2022 change color of gameText depending on game 
-//        TextView gameOfScore = findViewById(R.id.tv_game);
-//        if (gameOfScore.getText().equals("Senku")){
-//            gameOfScore.setTextColor(Color.BLUE);
-//        }else{
-//            gameOfScore.setTextColor(Color.RED);
-//        }
     }
 
 
@@ -65,5 +57,36 @@ public class MainSettingsActivity extends AppCompatActivity {
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+    }
+
+    public void onSelectGameClicked(View view) {
+
+        DbScores dbScores = new DbScores(MainSettingsActivity.this);
+
+//        scoresArrayList = new ArrayList<>();
+
+        ScoresListAdapter adapter = new ScoresListAdapter(dbScores.showScores2048());
+        scoresList.setAdapter(adapter);
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.rb_2048:
+                if (checked)
+                    adapter = new ScoresListAdapter(dbScores.showScores2048());
+                scoresList.setAdapter(adapter);
+                break;
+            case R.id.rb_senku:
+                if (checked)
+                    adapter = new ScoresListAdapter(dbScores.showScoresSenku());
+                scoresList.setAdapter(adapter);
+                break;
+            case R.id.rb_both:
+                if (checked)
+                    adapter = new ScoresListAdapter(dbScores.showScores());
+                scoresList.setAdapter(adapter);
+                break;
+        }
     }
 }
