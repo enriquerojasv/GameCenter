@@ -30,6 +30,7 @@ public class MainSettingsActivity extends AppCompatActivity {
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
         commentSettings.setText(getString(R.string.welcome_username) + " " + recoveredUsername + "!");
 
+
         scoresList = findViewById(R.id.scores_list);
         scoresList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -39,6 +40,14 @@ public class MainSettingsActivity extends AppCompatActivity {
 
         ScoresListAdapter adapter = new ScoresListAdapter(dbScores.showScores());
         scoresList.setAdapter(adapter);
+
+        // TODO: 31/05/2022 change color of gameText depending on game 
+//        TextView gameOfScore = findViewById(R.id.tv_game);
+//        if (gameOfScore.getText().equals("Senku")){
+//            gameOfScore.setTextColor(Color.BLUE);
+//        }else{
+//            gameOfScore.setTextColor(Color.RED);
+//        }
     }
 
 
