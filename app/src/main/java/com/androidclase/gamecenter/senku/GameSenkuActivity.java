@@ -1,6 +1,9 @@
 package com.androidclase.gamecenter.senku;
 
+import static com.androidclase.gamecenter.Constants.GRID_1;
 import static com.androidclase.gamecenter.Constants.GRID_2;
+import static com.androidclase.gamecenter.Constants.GRID_3;
+import static com.androidclase.gamecenter.Constants.GRID_4;
 
 import android.os.Bundle;
 import android.view.Window;
@@ -21,7 +24,7 @@ public class GameSenkuActivity extends AppCompatActivity {
 
     private GridView gridViewBoard;
     private TextView moveCounter;
-    private int[][] selectedGrid = Constants.GRID_1;
+    private int[][] selectedGrid = GRID_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,22 +85,22 @@ public class GameSenkuActivity extends AppCompatActivity {
         int n = rand.nextInt(3);
         selectedGrid = GRID_2;
 
-//        switch (n) {
-//            case 0:
-//                selectedGrid = GRID_1;
-//                break;
-//            case 1:
-//                selectedGrid = GRID_2;
-//                break;
-//            case 2:
-//                selectedGrid = GRID_3;
-//                break;
-//            case 3:
-//                selectedGrid = GRID_4;
-//                break;
-//            default:
-//                break;
-//        }
+        switch (n) {
+            case 0:
+                selectedGrid = GRID_1;
+                break;
+            case 1:
+                selectedGrid = GRID_2;
+                break;
+            case 2:
+                selectedGrid = GRID_3;
+                break;
+            case 3:
+                selectedGrid = GRID_4;
+                break;
+            default:
+                break;
+        }
     }
 
     private void setupFullscreen() {
