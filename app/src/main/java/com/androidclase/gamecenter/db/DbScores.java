@@ -1,5 +1,9 @@
 package com.androidclase.gamecenter.db;
 
+import static com.androidclase.gamecenter.Constants.TABLE_GAME;
+import static com.androidclase.gamecenter.Constants.TABLE_SCORES;
+import static com.androidclase.gamecenter.Constants.TABLE_SCORE_COLUMN;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -59,9 +63,7 @@ public class DbScores extends DbHelper {
                 scoresList.add(score);
             } while (scoresCursor.moveToNext());
         }
-
         scoresCursor.close();
-
         return scoresList;
     }
 
@@ -85,9 +87,7 @@ public class DbScores extends DbHelper {
                 scoresList.add(score);
             } while (scoresCursor.moveToNext());
         }
-
         scoresCursor.close();
-
         return scoresList;
     }
 
@@ -111,9 +111,7 @@ public class DbScores extends DbHelper {
                 scoresList.add(score);
             } while (scoresCursor.moveToNext());
         }
-
         scoresCursor.close();
-
         return scoresList;
     }
 }

@@ -1,8 +1,6 @@
 package com.androidclase.gamecenter.senku;
 
 import static com.androidclase.gamecenter.Constants.GRID_2;
-import static com.androidclase.gamecenter.Constants.GRID_3;
-import static com.androidclase.gamecenter.Constants.GRID_4;
 
 import android.os.Bundle;
 import android.view.Window;
@@ -82,23 +80,24 @@ public class GameSenkuActivity extends AppCompatActivity {
     private void gridSelector() {
         Random rand = new Random();
         int n = rand.nextInt(3);
+        selectedGrid = GRID_2;
 
-        switch (n) {
-            case 0:
-                selectedGrid = Constants.GRID_1;
-                break;
-            case 1:
-                selectedGrid = GRID_2;
-                break;
-            case 2:
-                selectedGrid = GRID_3;
-                break;
-            case 3:
-                selectedGrid = GRID_4;
-                break;
-            default:
-                break;
-        }
+//        switch (n) {
+//            case 0:
+//                selectedGrid = GRID_1;
+//                break;
+//            case 1:
+//                selectedGrid = GRID_2;
+//                break;
+//            case 2:
+//                selectedGrid = GRID_3;
+//                break;
+//            case 3:
+//                selectedGrid = GRID_4;
+//                break;
+//            default:
+//                break;
+//        }
     }
 
     private void setupFullscreen() {

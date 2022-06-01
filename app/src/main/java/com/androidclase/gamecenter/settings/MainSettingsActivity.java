@@ -39,24 +39,12 @@ public class MainSettingsActivity extends AppCompatActivity {
         scoresList.setLayoutManager(new LinearLayoutManager(this));
 
         btShow.setOnClickListener(view -> onBtShowClick(view));
-
-
-    }
-
-
-    private void setupFullscreen() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
     }
 
     public void onSelectGameClicked(View view) {
 
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.rb_2048:
                 if (checked)
@@ -75,10 +63,8 @@ public class MainSettingsActivity extends AppCompatActivity {
 
     public void onSortTypeClicked(View view) {
 
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.rb_asc:
                 if (checked)
@@ -108,4 +94,10 @@ public class MainSettingsActivity extends AppCompatActivity {
         scoresList.setAdapter(adapter);
     }
 
+    private void setupFullscreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+    }
 }

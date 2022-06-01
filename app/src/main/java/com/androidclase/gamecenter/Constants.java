@@ -24,6 +24,16 @@ public class Constants {
     public static final int OPT_SENKU = 1;
     public static final int OPT_SETTINGS = 2;
 
+    public static final String TABLE_SCORES = "t_scores";
+    public static final String TABLE_USER = "user";
+    public static final String TABLE_GAME = "game";
+    public static final String TABLE_SCORE_COLUMN = "score";
+    public static final String TABLE_FORMAT = "CREATE TABLE IF NOT EXISTS " + TABLE_SCORES + "(" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," + TABLE_USER +
+            " TEXT NOT NULL," + TABLE_GAME +
+            " TEXT NOT NULL," + TABLE_SCORE_COLUMN +
+            " INTEGER NOT NULL)";
+
     public static final int[][] GRID_1 = {
             {0, 0, 1, 1, 1, 0, 0},
             {0, 0, 1, 1, 1, 0, 0},

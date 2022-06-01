@@ -30,7 +30,6 @@ import java.util.Random;
 
 public class Game2048Activity extends AppCompatActivity {
 
-
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
     private static TextView moveLyView;
