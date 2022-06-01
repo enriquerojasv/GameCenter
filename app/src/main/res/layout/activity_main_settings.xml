@@ -9,16 +9,17 @@
 
     <TextView
         android:id="@+id/tv_settings_welcome"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_xl"
+        android:gravity="center"
         android:text="@string/welcome"
         android:textColor="@color/background_newgame"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_xl"
         android:text="@string/select_button"
@@ -31,16 +32,15 @@
 
         <RadioGroup
             android:id="@+id/rg_selection_game"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xl"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rb_2048"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/cell_size"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_xl"
-                android:layout_weight="1"
                 android:onClick="onSelectGameClicked"
                 android:text="@string/game2048"
                 android:textColor="@color/background_newgame"
@@ -48,9 +48,8 @@
 
             <RadioButton
                 android:id="@+id/rb_senku"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/cell_size"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:onClick="onSelectGameClicked"
                 android:text="@string/senku"
                 android:textColor="@color/background_newgame"
@@ -58,29 +57,24 @@
 
             <RadioButton
                 android:id="@+id/rb_both"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/cell_size"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_xl"
-                android:layout_weight="1"
+                android:checked="true"
                 android:onClick="onSelectGameClicked"
                 android:text="@string/both"
-                android:checked="true"
                 android:textColor="@color/background_newgame"
                 android:textStyle="bold" />
 
-
         </RadioGroup>
-
-
 
 
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_xl"
-        android:text="@string/select_button"
+        android:text="@string/select_sorting_type"
         android:textColor="@color/background_newgame" />
 
     <LinearLayout
@@ -89,15 +83,15 @@
 
         <RadioGroup
             android:id="@+id/rg_sort"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xl"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rb_asc"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/cell_size"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_xl"
                 android:onClick="onSortTypeClicked"
                 android:text="@string/asc"
                 android:textColor="@color/background_newgame"
@@ -105,11 +99,11 @@
 
             <RadioButton
                 android:id="@+id/rb_desc"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/cell_size"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="@string/desc"
                 android:onClick="onSortTypeClicked"
+                android:text="@string/desc"
                 android:textColor="@color/background_newgame"
                 android:textStyle="bold" />
 
@@ -121,9 +115,10 @@
         android:id="@+id/bt_show"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/spacing_xl"
-        android:onClick="onBtShowClick" />
+        android:layout_marginStart="@dimen/spacing_xl"
+        android:backgroundTint="@color/background_newgame"
+        android:onClick="onBtShowClick"
+        android:text="@string/show" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scores_list"
@@ -131,6 +126,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/spacing_xl" />
-
 
 </LinearLayout>

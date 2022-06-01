@@ -55,7 +55,9 @@
     <string name="welcome_username">Welcome, </string>
     <string name="senku_comment">Go for it,</string>
     <string name="both">Both</string>
-    <string name="select_button">Select a button to see the scores!</string>
+    <string name="select_button">Select a game</string>
     <string name="asc">ASC</string>
     <string name="desc">DESC</string>
+    <string name="show">Show</string>
+    <string name="select_sorting_type">Select a sorting type</string>
 </resources>
