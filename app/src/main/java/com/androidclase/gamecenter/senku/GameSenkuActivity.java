@@ -31,7 +31,7 @@ public class GameSenkuActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_game_senku);
         gridViewBoard = findViewById(R.id.grid_view_board);
-        moveCounter = findViewById(R.id.move_counter);
+        moveCounter = findViewById(R.id.move_ly_view);
 
         TextView commentSenku = findViewById(R.id.tv_senku_welcome);
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);

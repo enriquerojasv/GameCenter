@@ -136,37 +136,27 @@ public class SenkuBoxAdapter extends ArrayAdapter<SenkuBoxModel> {
     }
 
     private void checkDirection(SenkuBoxModel boxModel) {
-        //Check if the 2 top cells are not out of bounds
+        //Checks if the 2 follow cells are not out of bounds
         boolean topBounds = boxModel.getRow() - 1 >= 0 && boxModel.getRow() - 2 >= 0;
-
-        //Check if the 2 bottom cells are not out of bounds
         boolean botBounds = boxModel.getRow() + 1 < grid.length && boxModel.getRow() + 2 < grid.length;
-
-        //Check if the 2 left cells are not out of bounds
         boolean leftBounds = boxModel.getCol() - 1 >= 0 && boxModel.getCol() - 2 >= 0;
-
-        //Check if the 2 right cells are not out of bounds
         boolean rightBounds = boxModel.getCol() + 1 < grid.length && boxModel.getCol() + 2 < grid.length;
 
         if (topBounds) {
             checkPossibles(boxModel, "UP");
         }
-
         if (botBounds) {
             checkPossibles(boxModel, "DOWN");
         }
-
         if (leftBounds) {
             checkPossibles(boxModel, "LEFT");
         }
-
         if (rightBounds) {
             checkPossibles(boxModel, "RIGHT");
         }
     }
 
     private void checkPossibles(SenkuBoxModel boxModel, String direction) {
-        // TODO: 19/05/2022 divide in other methods
         int y = 0;
         int x = 0;
 

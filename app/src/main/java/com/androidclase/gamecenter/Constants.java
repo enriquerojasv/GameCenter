@@ -10,6 +10,7 @@ public class Constants {
     public static final String NAME_BOTH = "BOTH";
     public static final String NAME_ASC = "ASC";
     public static final String NAME_DESC = "DESC";
+    public static final String BEST_SCORE = "best_score";
     public static final int BOARD_SIZE = 4;
     public static final int[] CELL_BG = {R.drawable.g2048_cell_empty, R.drawable.g2048_cell_2,
             R.drawable.g2048_cell_4, R.drawable.g2048_cell_8, R.drawable.g2048_cell_16,

@@ -37,13 +37,13 @@
                 android:textColor="@color/background"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/score_value"
+                app:layout_constraintBottom_toTopOf="@id/score_ly_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/score_value"
+                android:id="@+id/score_ly_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -78,13 +78,13 @@
                 android:textColor="@color/background"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/best_value"
+                app:layout_constraintBottom_toTopOf="@+id/best_score_ly_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/best_value"
+                android:id="@+id/best_score_ly_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -324,7 +324,7 @@
     </androidx.gridlayout.widget.GridLayout>
 
     <TextView
-        android:id="@+id/move_counter"
+        android:id="@+id/move_ly_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

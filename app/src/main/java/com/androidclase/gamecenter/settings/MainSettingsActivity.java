@@ -42,7 +42,6 @@ public class MainSettingsActivity extends AppCompatActivity {
     }
 
     public void onSelectGameClicked(View view) {
-
         boolean checked = ((RadioButton) view).isChecked();
 
         switch (view.getId()) {
@@ -62,7 +61,6 @@ public class MainSettingsActivity extends AppCompatActivity {
     }
 
     public void onSortTypeClicked(View view) {
-
         boolean checked = ((RadioButton) view).isChecked();
 
         switch (view.getId()) {
@@ -78,7 +76,6 @@ public class MainSettingsActivity extends AppCompatActivity {
     }
 
     public void onBtShowClick(View view) {
-
         DbScores dbScores = new DbScores(MainSettingsActivity.this);
         ScoresListAdapter adapter = new ScoresListAdapter(dbScores.showScores(sortType));
         scoresList.setAdapter(adapter);

@@ -1,5 +1,6 @@
 package com.androidclase.gamecenter.game2048;
 
+import static com.androidclase.gamecenter.Constants.BEST_SCORE;
 import static com.androidclase.gamecenter.Constants.BOARD_CELLS;
 import static com.androidclase.gamecenter.Constants.BOARD_SIZE;
 import static com.androidclase.gamecenter.Constants.CELL_BG;
@@ -76,7 +77,7 @@ public class Game2048Activity extends AppCompatActivity {
         if (scoreValue > bestScoreValue) {
             bestScoreValue = scoreValue;
 
-            editor.putInt("best_score", scoreValue);
+            editor.putInt(BEST_SCORE, scoreValue);
             editor.commit();
 
             bestScoreLyView.setText(String.valueOf(bestScoreValue));
@@ -91,17 +92,54 @@ public class Game2048Activity extends AppCompatActivity {
         scoreLyView.setText(String.valueOf(scoreValue));
     }
 
-    private void initBestScore() {
-        // TODO: 19/05/2022 change best_score to constant
-        bestScoreValue = sharedPreferences.getInt("best_score", 0);
-        bestScoreLyView.setText(String.valueOf(bestScoreValue));
+    private static void checkPossibleMovements() {
+
+        int movesUp = 0;
+        int movesLeft = 0;
+        int movesRight = 0;
+        int movesDown = 0;
+
+        int movesTotal = 4;
+
+        //Checks all impossible moves Up and Left
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                for (int k = 0; k < BOARD_SIZE; k++) {
+                    impossibleMoves = 0;
+                    checkMovement(i, j, -1, 0, true);
+                    movesUp += impossibleMoves;
+                    impossibleMoves = 0;
+                    checkMovement(i, j, 0, -1, true);
+                    movesLeft += impossibleMoves;
+                }
+            }
+        }
+
+        //Checks all impossible moves Down and Right
+        for (int i = BOARD_SIZE - 1; i >= 0; i--) {
+            for (int j = BOARD_SIZE - 1; j >= 0; j--) {
+                for (int k = BOARD_SIZE - 1; k >= 0; k--) {
+                    impossibleMoves = 0;
+                    checkMovement(i, j, 1, 0, true);
+                    movesDown += impossibleMoves;
+                    impossibleMoves = 0;
+                    checkMovement(i, j, 0, 1, true);
+                    movesRight += impossibleMoves;
+                }
+            }
+        }
+
+        if (movesDown == 48) movesTotal -= 1;
+        if (movesRight == 48) movesTotal -= 1;
+        if (movesUp == 48) movesTotal -= 1;
+        if (movesLeft == 48) movesTotal -= 1;
+
+        winCheck(movesTotal, false);
     }
 
-    private void setupTimer() {
-        timer = (Chronometer) findViewById(R.id.timer);
-        timer.setBase(SystemClock.elapsedRealtime());
-
-        timer.start();
+    private void initBestScore() {
+        bestScoreValue = sharedPreferences.getInt(BEST_SCORE, 0);
+        bestScoreLyView.setText(String.valueOf(bestScoreValue));
     }
 
     private void createUI() {
@@ -126,11 +164,11 @@ public class Game2048Activity extends AppCompatActivity {
         BOARD_CELLS[3][3] = findViewById(R.id.cell_15);
     }
 
-    private void initScoreViews() {
-        // TODO: 18/05/2022 standardize id naming with variable naming
-        bestScoreLyView = findViewById(R.id.best_value);
-        scoreLyView = findViewById(R.id.score_value);
-        moveLyView = findViewById(R.id.move_counter);
+    private void setupTimer() {
+        timer = findViewById(R.id.timer);
+        timer.setBase(SystemClock.elapsedRealtime());
+
+        timer.start();
     }
 
     private void setupAnimations() {
@@ -139,7 +177,6 @@ public class Game2048Activity extends AppCompatActivity {
     }
 
     private void setupSharedPreferences() {
-        // TODO: 18/05/2022 review shared-preferences official setup. possible high score solution
         sharedPreferences = getApplicationContext().getSharedPreferences("g2048Records", MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
@@ -151,58 +188,16 @@ public class Game2048Activity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-    private static void checkPossibleMovements() {
-
-        int movesUp = 0;
-        int movesLeft = 0;
-        int movesRight = 0;
-        int movesDown = 0;
-
-        int movesTotal = 4;
-
-        //Checks all impossible moves Up and Left. If there are 48 impossible moves, you can move in
-        //that direction
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                for (int k = 0; k < BOARD_SIZE; k++) {
-                    impossibleMoves = 0;
-                    checkMovement(i, j, -1, 0, true);
-                    movesUp += impossibleMoves;
-                    impossibleMoves = 0;
-                    checkMovement(i, j, 0, -1, true);
-                    movesLeft += impossibleMoves;
-                }
-            }
-        }
-
-        //Checks all impossible moves Down and Right. If there are 48 impossible moves, you can move
-        //in that direction
-        for (int i = BOARD_SIZE - 1; i >= 0; i--) {
-            for (int j = BOARD_SIZE - 1; j >= 0; j--) {
-                for (int k = BOARD_SIZE - 1; k >= 0; k--) {
-                    impossibleMoves = 0;
-                    checkMovement(i, j, 1, 0, true);
-                    movesDown += impossibleMoves;
-                    impossibleMoves = 0;
-                    checkMovement(i, j, 0, 1, true);
-                    movesRight += impossibleMoves;
-                }
-            }
-        }
-
-        if (movesDown == 48) movesTotal -= 1;
-        if (movesRight == 48) movesTotal -= 1;
-        if (movesUp == 48) movesTotal -= 1;
-        if (movesLeft == 48) movesTotal -= 1;
-
-        winCheck(movesTotal, false);
+    private void initScoreViews() {
+        bestScoreLyView = findViewById(R.id.best_score_ly_view);
+        scoreLyView = findViewById(R.id.score_ly_view);
+        moveLyView = findViewById(R.id.move_ly_view);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: 18/05/2022 remove context variable
         context = this;
 
         setupFullscreen();

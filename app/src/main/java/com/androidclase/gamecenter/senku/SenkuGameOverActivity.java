@@ -36,7 +36,7 @@ public class SenkuGameOverActivity extends AppCompatActivity {
         double bonus = getIntent().getExtras().getDouble("bonus");
         long ms = getIntent().getExtras().getLong("ms");
 
-        int finalScore = (int) ((int) (moves * 10) * bonus);
+        int finalScore = (int) ((moves * 10) * bonus);
 
         scoreText.setText("SCORE: " + finalScore);
         moveText.setText("MOVES: " + moves);

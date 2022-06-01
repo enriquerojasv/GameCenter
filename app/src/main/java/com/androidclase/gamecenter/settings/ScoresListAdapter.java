@@ -41,7 +41,6 @@ public class ScoresListAdapter extends RecyclerView.Adapter<ScoresListAdapter.Sc
     }
 
     public class ScoreViewHolder extends RecyclerView.ViewHolder {
-
         TextView viewUser, viewGame, viewScore;
 
         public ScoreViewHolder(@NonNull View itemView) {
