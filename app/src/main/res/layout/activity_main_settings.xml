@@ -120,6 +120,40 @@
         android:onClick="onBtShowClick"
         android:text="@string/show" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="@dimen/scores_item_box"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_xl"
+            android:text="USER"
+            android:textSize="@dimen/scores_list_textsize"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:layout_width="@dimen/scores_item_box"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_xl"
+            android:text="GAME"
+            android:textSize="@dimen/scores_list_textsize"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_xl"
+            android:text="SCORE"
+            android:textSize="@dimen/scores_list_textsize"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scores_list"
         android:layout_width="wrap_content"

@@ -6,9 +6,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,19 +16,9 @@ import com.androidclase.gamecenter.Constants;
 import com.androidclase.gamecenter.R;
 import com.androidclase.gamecenter.db.DbScores;
 
-import java.util.ArrayList;
-
 public class MainSettingsActivity extends AppCompatActivity {
 
     private RecyclerView scoresList;
-    private ArrayList<Scores> scoresArrayList;
-    private RadioButton rb2048;
-    private RadioButton rbSenku;
-    private RadioButton rbBoth;
-
-    private RadioGroup rgSelectionGame;
-
-    // TODO: 31/05/2022 Extract Constants
     private String gameSelected = Constants.NAME_BOTH;
     private String sortType = Constants.NAME_DESC;
 
@@ -45,15 +33,7 @@ public class MainSettingsActivity extends AppCompatActivity {
         String recoveredUsername = getIntent().getStringExtra(Constants.USERNAME);
         commentSettings.setText(getString(R.string.welcome_username) + " " + recoveredUsername + "!");
 
-
-        rb2048 = findViewById(R.id.rb_2048);
-        rbSenku = findViewById(R.id.rb_senku);
-        rbBoth = findViewById(R.id.rb_both);
         Button btShow = findViewById(R.id.bt_show);
-
-        RadioButton rbAsc = findViewById(R.id.rb_asc);
-        rgSelectionGame = findViewById(R.id.rg_selection_game);
-
 
         scoresList = findViewById(R.id.scores_list);
         scoresList.setLayoutManager(new LinearLayoutManager(this));
@@ -126,43 +106,6 @@ public class MainSettingsActivity extends AppCompatActivity {
         }
 
         scoresList.setAdapter(adapter);
-
-        Toast.makeText(this, gameSelected + "" + sortType, Toast.LENGTH_SHORT).show();
-
-
     }
 
-
-//    private String getRbGame() {
-//        rgSelectionGame.getCheckedRadioButtonId();
-//        Toast.makeText(this, rgSelectionGame.getCheckedRadioButtonId() + "", Toast.LENGTH_SHORT).show();
-//
-//        DbScores dbScores = new DbScores(MainSettingsActivity.this);
-//
-////        scoresArrayList = new ArrayList<>();
-//
-//        ScoresListAdapter adapter = new ScoresListAdapter(dbScores.showScores2048());
-//        scoresList.setAdapter(adapter);
-//        // Is the button now checked?
-//        boolean checked = ((RadioButton) view).isChecked();
-//
-//        switch (view.getId()) {
-//            case R.id.rb_2048:
-//                if (checked)
-//                    adapter = new ScoresListAdapter(dbScores.showScores2048());
-//                scoresList.setAdapter(adapter);
-//                break;
-//            case R.id.rb_senku:
-//                if (checked)
-//                    adapter = new ScoresListAdapter(dbScores.showScoresSenkuDesc());
-//                scoresList.setAdapter(adapter);
-//                break;
-//            case R.id.rb_both:
-//                if (checked)
-//                    adapter = new ScoresListAdapter(dbScores.showScoresDesc());
-//                scoresList.setAdapter(adapter);
-//                break;
-//        }
-//
-//    }
 }
