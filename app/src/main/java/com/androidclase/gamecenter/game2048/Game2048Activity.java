@@ -220,7 +220,6 @@ public class Game2048Activity extends AppCompatActivity {
 
     //fills a new cell if possible
     private static void generateCell(int cellQuantity) {
-
         int emptyCells = getEmptyCells();
 
         if (emptyCells >= 1) {
@@ -270,7 +269,6 @@ public class Game2048Activity extends AppCompatActivity {
     }
 
     private static boolean checkBounds(int x, int y, int vertical, int horizontal) {
-
         //left
         if (horizontal == -1) {
             return y < 0;

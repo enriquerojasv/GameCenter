@@ -83,7 +83,6 @@ public class GameSenkuActivity extends AppCompatActivity {
     private void gridSelector() {
         Random rand = new Random();
         int n = rand.nextInt(3);
-        selectedGrid = GRID_2;
 
         switch (n) {
             case 0:

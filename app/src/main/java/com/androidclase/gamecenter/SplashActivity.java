@@ -25,17 +25,17 @@ public class SplashActivity extends AppCompatActivity {
         View gamesView = findViewById(R.id.games_view);
         View versionView = findViewById(R.id.version_view);
 
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.splash_fade_in_text);
-        Animation fadeIn2 = AnimationUtils.loadAnimation(this, R.anim.splash_fade_in_2);
+        Animation fadeInTitle = AnimationUtils.loadAnimation(this, R.anim.splash_fade_in_title);
+        Animation fadeInSubtitle = AnimationUtils.loadAnimation(this, R.anim.splash_fade_in_subtitle);
         Animation logoAnim = AnimationUtils.loadAnimation(this, R.anim.splash_logo_animation);
 
-        titleView.startAnimation(fadeIn);
-        gamesView.startAnimation(fadeIn2);
-        versionView.startAnimation(fadeIn);
-        presentsView.startAnimation(fadeIn);
+        titleView.startAnimation(fadeInTitle);
+        presentsView.startAnimation(fadeInTitle);
         logoView.startAnimation(logoAnim);
+        gamesView.startAnimation(fadeInSubtitle);
+        versionView.startAnimation(fadeInTitle);
 
-        fadeIn.setAnimationListener(new Animation.AnimationListener() {
+        fadeInTitle.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
 
